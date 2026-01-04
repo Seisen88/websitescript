@@ -34,13 +34,13 @@ function loadHeader() {
             <a href="#" class="sidebar-link" title="Partners">
                 <i class="fas fa-handshake"></i>
             </a>
-            <a href="#" class="sidebar-link" title="FAQ">
+            <a href="faq.html" class="sidebar-link" title="FAQ">
                 <i class="fas fa-question-circle"></i>
             </a>
             <a href="https://discord.gg/F4sAf6z8Ph" target="_blank" class="sidebar-link" title="Discord">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="#" class="sidebar-link" title="YouTube">
+            <a href="videos.html" class="sidebar-link" title="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
         </div>

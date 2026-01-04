@@ -124,6 +124,8 @@
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-card::before {
@@ -236,6 +238,7 @@
 .pricing-features {
   list-style: none;
   margin-bottom: 2rem;
+  flex: 1;
 }
 
 .pricing-features li {
@@ -254,6 +257,18 @@
 .pricing-features li i {
   color: #10b981;
   font-size: 1.1rem;
+}
+
+/* Pricing Card Buttons */
+.pricing-card .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.pricing-card .btn-large {
+  padding: 1rem 2rem;
+  font-size: 1rem;
 }
 
 /* Premium FAQ */

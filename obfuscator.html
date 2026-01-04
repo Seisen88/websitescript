@@ -15,15 +15,16 @@
     <div id="header-container"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content obfuscator-page">
         <div class="container">
-            <!-- Dashboard Header -->
-            <div class="dashboard-header">
-                <div class="welcome-section">
-                    <h1>Dashboard</h1>
-                    <p>Protect your Lua scripts with powerful obfuscation</p>
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="page-icon">
+                    <i class="fas fa-lock"></i>
                 </div>
-            </div>
+                <h1>Lua Obfuscator</h1>
+                <p class="page-description">Protect your Lua scripts with powerful obfuscation - Supports Lua 5.1 and LuaU</p>
+            </section>
 
             <!-- Stats Overview -->
             <section class="stats-grid">
@@ -65,18 +66,16 @@
                             <option value="minify">Minify</option>
                             <option value="weak">Weak</option>
                             <option value="medium">Medium</option>
-                            <option value="strong"selected>Strong</option>
+                            <option value="strong" selected>Strong</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="file-upload">Or Upload File</label>
-                        <div class="custom-file-upload">
-                            <label for="file-upload" class="file-upload-btn">
-                                <i class="fas fa-cloud-upload-alt"></i> Choose File
-                            </label>
-                            <span id="file-name" class="file-name">No file chosen</span>
-                            <input type="file" id="file-upload" accept=".lua,.txt">
-                        </div>
+                        <label class="control-label">Upload File</label>
+                        <label for="file-upload" class="file-upload-btn">
+                            <i class="fas fa-upload"></i>
+                            <span id="file-name">Choose File</span>
+                            <input type="file" id="file-upload" accept=".lua,.txt" style="display: none;">
+                        </label>
                     </div>
                 </div>
                 <div class="button-group">
@@ -100,6 +99,10 @@
                         </h2>
                     </div>
                     <div class="code-editor-wrapper">
+                        <button class="btn-clear" id="clear-input-btn" style="display: none;">
+                            <i class="fas fa-times"></i>
+                            <span>Clear</span>
+                        </button>
                         <div class="line-numbers" id="input-line-numbers">1</div>
                         <textarea 
                             id="input-code" 
@@ -121,6 +124,20 @@ greet('World')"
                         </h2>
                     </div>
                     <div class="code-editor-wrapper">
+                        <div id="output-actions" class="output-action-buttons" style="display: none;">
+                            <button class="btn btn-secondary btn-small" id="new-script-btn">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>New Script</span>
+                            </button>
+                            <button class="btn btn-success btn-small" id="download-btn">
+                                <i class="fas fa-download"></i>
+                                <span>Download</span>
+                            </button>
+                            <button class="btn btn-primary btn-small" id="copy-btn">
+                                <i class="fas fa-copy"></i>
+                                <span>Copy Code</span>
+                            </button>
+                        </div>
                         <div class="line-numbers" id="output-line-numbers">1</div>
                         <textarea 
                             id="output-code" 
@@ -129,20 +146,6 @@ greet('World')"
                             spellcheck="false"
                         ></textarea>
                         <div class="syntax-highlight"></div>
-                    </div>
-                    <div id="output-actions" class="panel-footer" style="margin-top: 1rem; display: none; gap: 0.5rem; justify-content: flex-end;">
-                        <button class="btn btn-secondary btn-small" id="new-script-btn">
-                            <i class="fas fa-plus-circle"></i>
-                            <span>New Script</span>
-                        </button>
-                        <button class="btn btn-success btn-small" id="download-btn">
-                            <i class="fas fa-download"></i>
-                            <span>Download</span>
-                        </button>
-                        <button class="btn btn-primary btn-small" id="copy-btn">
-                            <i class="fas fa-copy"></i>
-                            <span>Copy Code</span>
-                        </button>
                     </div>
                 </div>
             </section>
@@ -166,8 +169,8 @@ greet('World')"
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-code-branch feature-icon"></i>
-                    <h3>Open Source</h3>
-                    <p>Licensed under GNU AGPL v3.0, free to use and modify</p>
+                    <h3>Prometheus</h3>
+                    <p>Powered by Prometheus obfuscator, licensed under GNU AGPL v3.0</p>
                 </div>
             </section>
         </div>

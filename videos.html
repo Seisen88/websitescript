@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch tutorial videos, guides, and feature showcases from Seisen">
+    <meta name="keywords" content="tutorials, videos, guides, seisen, youtube">
+    <title>Tutorial Videos - Seisen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2310b981' d='M60,10 L35,55 L50,55 L40,90 L65,45 L50,45 Z'/></svg>">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content videos-page">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h1>Tutorial Videos</h1>
+                <p class="page-subtitle">Watch guides, tutorials, and feature showcases</p>
+                <a href="https://www.youtube.com/@SeisenHub" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-youtube"></i>
+                    <span>Subscribe on YouTube</span>
+                </a>
+            </div>
+
+            <!-- Loading State -->
+            <div id="videos-loading" class="videos-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading videos...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="videos-error" class="videos-error" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Unable to load videos</h3>
+                <p id="error-message">Please try again later or visit our YouTube channel directly.</p>
+                <a href="https://www.youtube.com/@SeisenHub" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-youtube"></i>
+                    <span>Visit YouTube Channel</span>
+                </a>
+            </div>
+
+            <!-- Videos Grid -->
+            <div id="videos-grid" class="videos-grid" style="display: none;">
+                <!-- Videos will be dynamically inserted here -->
+            </div>
+
+            <!-- Channel CTA -->
+            <div class="channel-cta">
+                <div class="channel-cta-content">
+                    <i class="fab fa-youtube"></i>
+                    <div>
+                        <h3>Don't miss new videos!</h3>
+                        <p>Subscribe to our channel for the latest tutorials and updates</p>
+                    </div>
+                </div>
+                <a href="https://www.youtube.com/@SeisenHub" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-youtube"></i>
+                    <span>Subscribe Now</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/videos.js"></script>
+</body>
+</html>

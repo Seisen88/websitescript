@@ -69,18 +69,49 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadBtn = document.getElementById('download-btn');
     const copyBtn = document.getElementById('copy-btn');
     const outputActions = document.getElementById('output-actions');
+    const clearInputBtn = document.getElementById('clear-input-btn');
+
+    // Toggle clear button visibility
+    function toggleClearButton() {
+        if (inputCode.value.trim().length > 0) {
+            clearInputBtn.style.display = 'inline-flex';
+        } else {
+            clearInputBtn.style.display = 'none';
+        }
+    }
+
+    // Clear input button handler
+    clearInputBtn.addEventListener('click', function() {
+        inputCode.value = '';
+        inputCode.dispatchEvent(new Event('input'));
+        toggleClearButton();
+        
+        // Reset file upload
+        fileUpload.value = '';
+        const fileNameSpan = document.getElementById('file-name');
+        if (fileNameSpan) {
+            fileNameSpan.textContent = 'Choose File';
+            fileNameSpan.style.color = 'var(--text-secondary)';
+        }
+        
+        showNotification('Input cleared', 'success');
+    });
+
+    // Monitor input changes for clear button
+    inputCode.addEventListener('input', toggleClearButton);
+    
+    // Initialize clear button state
+    toggleClearButton();
 
     // File upload handler
     fileUpload.addEventListener('change', function(e) {
         const file = e.target.files[0];
-        const fileNameDisplay = document.getElementById('file-name');
+        const fileNameSpan = document.getElementById('file-name');
         
         if (file) {
             // Update filename display
-            if (fileNameDisplay) {
-                fileNameDisplay.textContent = file.name;
-                fileNameDisplay.style.color = 'var(--text-primary)';
-            }
+            fileNameSpan.textContent = file.name;
+            fileNameSpan.style.color = 'var(--text-primary)';
             
             const reader = new FileReader();
             reader.onload = function(event) {
@@ -91,14 +122,14 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             reader.onerror = function() {
                 showNotification('Error reading file', 'error');
+                fileNameSpan.textContent = 'Choose File';
+                fileNameSpan.style.color = 'var(--text-secondary)';
             };
             reader.readAsText(file);
         } else {
-            // Reset if cancelled
-            if (fileNameDisplay) {
-                fileNameDisplay.textContent = 'No file chosen';
-                fileNameDisplay.style.color = 'var(--text-secondary)';
-            }
+            // Reset to default text if no file selected
+            fileNameSpan.textContent = 'Choose File';
+            fileNameSpan.style.color = 'var(--text-secondary)';
         }
     });
 
@@ -140,6 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Trigger input event to update syntax highlighting
             outputCode.dispatchEvent(new Event('input'));
+            
+            // Hide clear button after obfuscation
+            if (clearInputBtn) {
+                clearInputBtn.style.display = 'none';
+            }
             
             // Show output actions
             outputActions.style.display = 'flex';

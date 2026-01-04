@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently Asked Questions about Seisen - Learn about our scripts, pricing, obfuscator, and more">
+    <meta name="keywords" content="faq, help, support, seisen, scripts, obfuscator">
+    <title>FAQ - Seisen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2310b981' d='M60,10 L35,55 L50,55 L40,90 L65,45 L50,45 Z'/></svg>">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content faq-page">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h1>Frequently Asked Questions</h1>
+                <p class="page-subtitle">Find answers to common questions about Seisen</p>
+            </div>
+
+            <!-- FAQ Categories -->
+            <div class="faq-categories">
+                <button class="faq-category-btn active" data-category="all">
+                    <i class="fas fa-th"></i>
+                    <span>All</span>
+                </button>
+                <button class="faq-category-btn" data-category="general">
+                    <i class="fas fa-info-circle"></i>
+                    <span>General</span>
+                </button>
+                <button class="faq-category-btn" data-category="scripts">
+                    <i class="fas fa-code"></i>
+                    <span>Scripts</span>
+                </button>
+                <button class="faq-category-btn" data-category="obfuscator">
+                    <i class="fas fa-lock"></i>
+                    <span>Obfuscator</span>
+                </button>
+                <button class="faq-category-btn" data-category="premium">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium</span>
+                </button>
+                <button class="faq-category-btn" data-category="technical">
+                    <i class="fas fa-cog"></i>
+                    <span>Technical</span>
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="faq-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="faq-search-input" placeholder="Search for questions...">
+            </div>
+
+            <!-- FAQ List -->
+            <div class="faq-container">
+                <!-- General Questions -->
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question">
+                        <h3>What is Seisen?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Seisen is a premium platform that provides high-quality scripts and a powerful Lua obfuscator. We offer both free and premium access to our script library, along with advanced obfuscation tools powered by Prometheus.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question">
+                        <h3>Is Seisen safe to use?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Seisen is completely safe. We don't collect personal information, and all our scripts are tested for security. Our obfuscator runs locally in your browser or on our secure backend server with Prometheus.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question">
+                        <h3>How do I get started?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Getting started is easy! Simply obtain a free or premium access key, browse our script library, and copy the scripts you need. For the obfuscator, just paste your Lua code and click obfuscate.</p>
+                    </div>
+                </div>
+
+                <!-- Scripts Questions -->
+                <div class="faq-item" data-category="scripts">
+                    <div class="faq-question">
+                        <h3>What types of scripts do you offer?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a variety of scripts including game scripts, utility scripts, and automation tools. Premium members get access to exclusive advanced scripts with additional features and regular updates.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="scripts">
+                    <div class="faq-question">
+                        <h3>How often are scripts updated?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our scripts are regularly updated to ensure compatibility and add new features. Premium scripts receive priority updates, and we notify users through Discord when major updates are released.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="scripts">
+                    <div class="faq-question">
+                        <h3>Can I request custom scripts?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Premium members can request custom scripts or modifications through our Discord server. We review all requests and implement the most popular ones in our updates.</p>
+                    </div>
+                </div>
+
+                <!-- Obfuscator Questions -->
+                <div class="faq-item" data-category="obfuscator">
+                    <div class="faq-question">
+                        <h3>What is the Lua Obfuscator?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our Lua Obfuscator is a powerful tool that transforms your Lua code to make it harder to reverse-engineer. It's powered by Prometheus, supporting both Lua 5.1 and LuaU (Roblox Lua), with multiple obfuscation presets from minify to strong.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="obfuscator">
+                    <div class="faq-question">
+                        <h3>Is the obfuscator free to use?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our obfuscator is completely free to use with no limitations. You can obfuscate as much code as you want using any of the available presets.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="obfuscator">
+                    <div class="faq-question">
+                        <h3>What obfuscation presets are available?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer four presets: <strong>Minify</strong> (basic compression), <strong>Weak</strong> (light obfuscation with variable renaming), <strong>Medium</strong> (moderate obfuscation with control flow changes), and <strong>Strong</strong> (heavy multi-layer obfuscation).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="obfuscator">
+                    <div class="faq-question">
+                        <h3>Does obfuscation affect performance?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Higher obfuscation levels may slightly impact performance due to added complexity. The Minify preset actually improves performance by removing whitespace. Medium and Strong presets add some overhead but maintain functionality.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="obfuscator">
+                    <div class="faq-question">
+                        <h3>Can I upload files to obfuscate?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can upload .lua files directly using the file upload button. The code will be loaded into the editor, and you can then obfuscate it normally.</p>
+                    </div>
+                </div>
+
+                <!-- Premium Questions -->
+                <div class="faq-item" data-category="premium">
+                    <div class="faq-question">
+                        <h3>What's the difference between Free and Premium?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Free tier provides access to basic scripts with a time-based key system that requires periodic renewal. Premium offers unlimited access to all scripts, priority updates, custom script requests, and no time limitations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="premium">
+                    <div class="faq-question">
+                        <h3>How much does Premium cost?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pricing information is available on our Premium page or through our Discord server. We offer various plans to suit different needs and budgets.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="premium">
+                    <div class="faq-question">
+                        <h3>How do I upgrade to Premium?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Visit our Premium page and click "Upgrade Now", or join our Discord server for direct assistance with the upgrade process and payment options.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="premium">
+                    <div class="faq-question">
+                        <h3>Can I cancel my Premium subscription?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel anytime. Contact us through Discord to manage your subscription. You'll retain access until the end of your billing period.</p>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>What Lua versions are supported?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our obfuscator supports Lua 5.1 and LuaU (Roblox Lua). You can select your Lua version in the obfuscator settings before processing your code.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>Why isn't my code obfuscating?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Check for syntax errors in your code first. Make sure the backend server is running if you're using the API mode. If issues persist, try a different obfuscation preset or contact us on Discord with the error message.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>Is my code stored on your servers?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, we don't store your code. When using the obfuscator, your code is processed and immediately discarded. History is stored locally in your browser only.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>Can I use Seisen offline?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The obfuscator requires a backend connection to use Prometheus. However, you can download and run the backend locally by following the setup instructions in GitHub repository.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h3>What browsers are supported?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Seisen works on all modern browsers including Chrome, Firefox, Edge, and Safari. We recommend using the latest version for the best experience.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question">
+                        <h3>How do I get support?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Join our Discord server at <a href="https://discord.gg/F4sAf6z8Ph" target="_blank">discord.gg/F4sAf6z8Ph</a> for community support, updates, and direct assistance from our team.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still Have Questions CTA -->
+            <div class="faq-cta">
+                <div class="faq-cta-content">
+                    <i class="fab fa-discord"></i>
+                    <div>
+                        <h3>Still have questions?</h3>
+                        <p>Join our Discord community for direct support and help</p>
+                    </div>
+                </div>
+                <a href="https://discord.gg/F4sAf6z8Ph" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-discord"></i>
+                    <span>Join Discord</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/faq.js"></script>
+</body>
+</html>
