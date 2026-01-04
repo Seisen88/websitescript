@@ -1,8 +1,8 @@
 // Get Key Page JavaScript
 
 function openKeyPage() {
-    // Junkie Development Key System URL - Seisen Hub
-    const keyPageUrl = 'https://junkie-development.de/get-key/seisenhub';
+    // Use centralized key system URL from config
+    const keyPageUrl = window.API_CONFIG ? window.API_CONFIG.keySystemUrl : 'https://work.ink/YOUR_LINK';
     
     showNotification('Opening key checkpoint in new tab...', 'info');
     

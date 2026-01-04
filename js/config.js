@@ -11,7 +11,12 @@ const API_CONFIG = {
     
     // Retry configuration
     maxRetries: 1,
-    retryDelay: 1000
+    // Retry configuration
+    maxRetries: 1,
+    retryDelay: 1000,
+
+    // Key System URL
+    keySystemUrl: 'https://work.ink/YOUR_LINK'
 };
 
 // Export for use in other scripts

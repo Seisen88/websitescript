@@ -293,7 +293,13 @@ function copyLoader() {
 }
 
 function getKey() {
-  window.location.href = 'getkey.html';
+    // Use centralized configuration if available
+    if (window.API_CONFIG && window.API_CONFIG.keySystemUrl) {
+        window.open(window.API_CONFIG.keySystemUrl, '_blank');
+    } else {
+        // Fallback or redirect to get key page if config missing
+        window.location.href = 'getkey.html';
+    }
 }
 
 function showNotification(message, type = "success") {

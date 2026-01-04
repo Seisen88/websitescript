@@ -92,7 +92,7 @@ function loadFooter() {
 
 function updateActiveNavLink() {
   const currentPage = window.location.pathname.split("/").pop() || "obfuscator.html";
-  const navLinks = document.querySelectorAll(".nav-link");
+  const navLinks = document.querySelectorAll(".sidebar-link");
 
   navLinks.forEach((link) => {
     link.classList.remove("active");
