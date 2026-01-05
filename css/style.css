@@ -126,11 +126,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   margin-bottom: auto;
   color: #10b981;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-decoration: none;
   transition: all var(--transition-fast);
 }
@@ -142,7 +142,7 @@ body {
 .sidebar-links {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
   width: 100%;
   position: absolute;
@@ -155,10 +155,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   text-decoration: none;
   transition: all var(--transition-fast);
   position: relative;
@@ -1094,7 +1094,8 @@ select:focus {
 }
 
 @keyframes pulse-scale {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
   }
@@ -1138,7 +1139,8 @@ select:focus {
 }
 
 @keyframes fade-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
   }
   50% {
