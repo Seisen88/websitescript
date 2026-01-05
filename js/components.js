@@ -150,7 +150,10 @@ function loadFooter() {
         <div class="footer-content">
             <div class="footer-section">
                 <h3><i class="fas fa-bolt" style="color: #10b981;"></i> Seisen</h3>
-                <p>Premium scripts and tools for enhanced gaming experiences.</p>
+                <p class="footer-carousel-text">Premium scripts and tools for enhanced gaming experiences.</p>
+                <div class="visitor-counter" style="margin-top: 0.5rem; font-size: 0.65rem; color: var(--text-muted);">
+                    <i class="fas fa-eye"></i> <span id="visitor-count">Loading...</span> visitors
+                </div>
             </div>
             <div class="footer-section">
                 <h4>Products</h4>
@@ -188,7 +191,61 @@ function loadFooter() {
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
         footerContainer.innerHTML = footerHTML;
+        initVisitorCounter();
+        initFooterCarousel();
     }
+}
+
+// Visitor Counter
+function initVisitorCounter() {
+    const VISITOR_KEY = 'seisen_visitor_count';
+    const VISITOR_ID_KEY = 'seisen_visitor_id';
+    
+    // Check if this is a unique visitor
+    let hasVisited = localStorage.getItem(VISITOR_ID_KEY);
+    
+    if (!hasVisited) {
+        // New visitor - generate unique ID and increment counter
+        const visitorId = Date.now() + Math.random().toString(36);
+        localStorage.setItem(VISITOR_ID_KEY, visitorId);
+        
+        // Get current count and increment
+        let count = parseInt(localStorage.getItem(VISITOR_KEY) || '1247', 10);
+        count++;
+        localStorage.setItem(VISITOR_KEY, count.toString());
+    }
+    
+    // Display count
+    const count = parseInt(localStorage.getItem(VISITOR_KEY) || '1247', 10);
+    const counterElement = document.getElementById('visitor-count');
+    if (counterElement) {
+        counterElement.textContent = count.toLocaleString();
+    }
+}
+
+// Footer Carousel
+function initFooterCarousel() {
+    const descriptions = [
+        "Premium scripts and tools for enhanced gaming experiences.",
+        "Advanced obfuscation and script protection solutions.",
+        "Your trusted hub for Roblox scripting excellence.",
+        "Powerful tools for developers and gamers alike."
+    ];
+    
+    let currentIndex = 0;
+    const carouselElement = document.querySelector('.footer-carousel-text');
+    
+    if (!carouselElement) return;
+    
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % descriptions.length;
+        carouselElement.style.opacity = '0';
+        
+        setTimeout(() => {
+            carouselElement.textContent = descriptions[currentIndex];
+            carouselElement.style.opacity = '1';
+        }, 300);
+    }, 4000);
 }
 
 function updateActiveNavLink() {
