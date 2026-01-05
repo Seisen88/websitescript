@@ -1012,6 +1012,12 @@ select:focus {
   list-style: none;
 }
 
+.footer-links-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.35rem 0.75rem;
+}
+
 .footer-links li {
   margin-bottom: 0.35rem;
 }

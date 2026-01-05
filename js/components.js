@@ -154,7 +154,7 @@ function loadFooter() {
             </div>
             <div class="footer-section">
                 <h4>Products</h4>
-                <ul class="footer-links">
+                <ul class="footer-links footer-links-columns">
                     <li><a href="obfuscator.html">Lua Obfuscator</a></li>
                     <li><a href="scripts.html">Script Hub</a></li>
                     <li><a href="videos.html">Tutorials</a></li>
