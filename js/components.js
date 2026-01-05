@@ -34,7 +34,7 @@ function loadHeader() {
             <a href="index.html" class="sidebar-link" title="Home">
                 <i class="fas fa-home"></i>
             </a>
-            <a href="obfuscator.html" class="sidebar-link" title="Obfuscator">
+            <a href="#" class="sidebar-link disabled" title="Obfuscator (Coming Soon)" onclick="return false;">
                 <i class="fas fa-lock"></i>
             </a>
             <a href="scripts.html" class="sidebar-link" title="Scripts">
