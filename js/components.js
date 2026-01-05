@@ -149,10 +149,6 @@ function loadFooter() {
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
-                <h3><i class="fas fa-bolt" style="color: #10b981;"></i> Seisen</h3>
-                <p>Premium scripts and tools for enhanced gaming experiences.</p>
-            </div>
-            <div class="footer-section">
                 <h4>Products</h4>
                 <ul class="footer-links">
                     <li><a href="obfuscator.html">Lua Obfuscator</a></li>
