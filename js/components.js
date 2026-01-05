@@ -44,6 +44,33 @@ function loadHeader() {
                 <i class="fab fa-youtube"></i>
             </a>
         </div>
+        <div class="sidebar-footer-actions">
+            <div class="theme-selector-container">
+                <button class="sidebar-link theme-toggle-btn" title="Change Theme" onclick="toggleThemeMenu()">
+                    <i class="fas fa-paint-brush"></i>
+                </button>
+                <div class="theme-menu" id="theme-menu">
+                    <div class="theme-menu-header">Select Theme</div>
+                    <div class="theme-options">
+                        <button class="theme-option" onclick="setTheme('default')">
+                            <i class="fas fa-moon"></i> Default
+                        </button>
+                        <button class="theme-option" onclick="setTheme('light')">
+                            <i class="fas fa-sun"></i> Light
+                        </button>
+                        <button class="theme-option" onclick="setTheme('forest')">
+                            <i class="fas fa-tree"></i> Forest
+                        </button>
+                        <button class="theme-option" onclick="setTheme('purple')">
+                            <i class="fas fa-ghost"></i> Purple
+                        </button>
+                        <button class="theme-option" onclick="setTheme('midnight')">
+                            <i class="fas fa-star"></i> Midnight
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
     `;
@@ -52,6 +79,109 @@ function loadHeader() {
     if (headerContainer) {
         headerContainer.innerHTML = headerHTML;
     }
+
+    // Initialize Theme
+    initializeTheme();
+}
+
+/* ========================================
+   THEME MANAGER
+   ======================================== */
+const THEMES = {
+    default: {
+        '--bg-primary': '#0f1419',
+        '--bg-secondary': '#1a1f2e',
+        '--bg-tertiary': '#252b3b',
+        '--bg-card': '#1e2433',
+        '--bg-card-hover': '#252b3d',
+        '--text-primary': '#ffffff',
+        '--text-secondary': '#9ca3af',
+        '--border-color': '#2d3748',
+        '--border-color-light': '#374151'
+    },
+    light: {
+        '--bg-primary': '#f3f4f6',
+        '--bg-secondary': '#ffffff',
+        '--bg-tertiary': '#e5e7eb',
+        '--bg-card': '#ffffff',
+        '--bg-card-hover': '#f9fafb',
+        '--text-primary': '#111827',
+        '--text-secondary': '#4b5563',
+        '--border-color': '#e5e7eb',
+        '--border-color-light': '#d1d5db'
+    },
+    forest: {
+        '--bg-primary': '#051a14',
+        '--bg-secondary': '#0a231b',
+        '--bg-tertiary': '#0f2e24',
+        '--bg-card': '#0d2820',
+        '--bg-card-hover': '#13352b',
+        '--text-primary': '#e2e8f0',
+        '--text-secondary': '#94a3b8',
+        '--border-color': '#163e30',
+        '--border-color-light': '#1e5240'
+    },
+    purple: {
+        '--bg-primary': '#130f1a',
+        '--bg-secondary': '#1e1628',
+        '--bg-tertiary': '#2a1f38',
+        '--bg-card': '#231a2f',
+        '--bg-card-hover': '#2d213d',
+        '--text-primary': '#e9d5ff',
+        '--text-secondary': '#a855f7',
+        '--border-color': '#3b2a4f',
+        '--border-color-light': '#4c3666'
+    },
+    midnight: {
+        '--bg-primary': '#02040a',
+        '--bg-secondary': '#0d1117',
+        '--bg-tertiary': '#161b22',
+        '--bg-card': '#161b22',
+        '--bg-card-hover': '#21262d',
+        '--text-primary': '#c9d1d9',
+        '--text-secondary': '#8b949e',
+        '--border-color': '#30363d',
+        '--border-color-light': '#484f58'
+    }
+};
+
+function toggleThemeMenu() {
+    const menu = document.getElementById('theme-menu');
+    menu.classList.toggle('active');
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function closeMenu(e) {
+        if (!e.target.closest('.theme-selector-container')) {
+            menu.classList.remove('active');
+            document.removeEventListener('click', closeMenu);
+        }
+    });
+
+    // Prevent button click from closing immediately
+    event.stopPropagation();
+}
+
+function setTheme(themeName) {
+    const theme = THEMES[themeName];
+    if (!theme) return;
+
+    // Apply CSS variables
+    const root = document.documentElement;
+    for (const [property, value] of Object.entries(theme)) {
+        root.style.setProperty(property, value);
+    }
+
+    // Save preference
+    localStorage.setItem('seisen-theme', themeName);
+
+    // Update active state in menu (optional visual feedback)
+    // Close menu
+    document.getElementById('theme-menu').classList.remove('active');
+}
+
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('seisen-theme') || 'default';
+    setTheme(savedTheme);
 }
 
 function loadFooter() {
