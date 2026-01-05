@@ -61,24 +61,36 @@ function loadFooter() {
         <div class="footer-content">
             <div class="footer-section">
                 <h3><i class="fas fa-bolt" style="color: #10b981;"></i> Seisen</h3>
-                <p>A powerful Lua obfuscator written in pure Lua. Supports Lua51 and LuaU.</p>
+                <p>The ultimate hub for Roblox scripting. From advanced obfuscation to premium scripts and in-depth tutorials, we provide the tools you need to succeed.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul class="footer-links">
+                    <li><a href="obfuscator.html">Lua Obfuscator</a></li>
+                    <li><a href="scripts.html">Script Hub</a></li>
+                    <li><a href="videos.html">Tutorials</a></li>
+                    <li><a href="premium.html">Premium Access</a></li>
+                    <li><a href="getkey.html">Get Key</a></li>
+                </ul>
             </div>
             <div class="footer-section">
                 <h4>Community</h4>
                 <ul class="footer-links">
-                    <li><a href="https://discord.gg/F4sAf6z8Ph" target="_blank">Discord Server</a></li>
+                    <li><a href="https://discord.gg/F4sAf6z8Ph" target="_blank"><i class="fab fa-discord"></i> Discord Server</a></li>
+                    <li><a href="https://www.youtube.com/@SeisenHub" target="_blank"><i class="fab fa-youtube"></i> YouTube Channel</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Legal</h4>
                 <ul class="footer-links">
-                    <li><a href="#">License (AGPL v3.0)</a></li>
+                    <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">License (AGPL v3.0)</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Seisen Lua Obfuscator. Licensed under GNU AGPL v3.0</p>
+            <p>&copy; 2026 Seisen. All rights reserved.</p>
         </div>
     </div>
 </footer>
