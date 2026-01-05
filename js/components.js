@@ -31,34 +31,40 @@ function loadHeader() {
             <i class="fas fa-bolt"></i>
         </a>
         <div class="sidebar-links">
-            <a href="index.html" class="sidebar-link" title="Home">
+            <a href="/" class="sidebar-link" title="Home">
                 <i class="fas fa-home"></i>
             </a>
             <a href="#" class="sidebar-link disabled" title="Obfuscator (Coming Soon)" onclick="return false;">
                 <i class="fas fa-lock"></i>
             </a>
-            <a href="scripts.html" class="sidebar-link" title="Scripts">
+            <a href="/scripts" class="sidebar-link" title="Scripts">
                 <i class="fas fa-code"></i>
             </a>
-            <a href="getkey.html" class="sidebar-link" title="Get Key">
+            <a href="/getkey" class="sidebar-link" title="Get Key">
                 <i class="fas fa-key"></i>
             </a>
-            <a href="premium.html" class="sidebar-link" title="Premium">
+            <a href="/premium" class="sidebar-link" title="Premium">
                 <i class="fas fa-crown"></i>
             </a>
-            <a href="partners.html" class="sidebar-link" title="Partners">
+            <a href="/partners" class="sidebar-link" title="Partners">
                 <i class="fas fa-handshake"></i>
             </a>
-            <a href="faq.html" class="sidebar-link" title="FAQ">
+            <a href="/faq" class="sidebar-link" title="FAQ">
                 <i class="fas fa-question-circle"></i>
             </a>
             <a href="https://discord.gg/F4sAf6z8Ph" target="_blank" class="sidebar-link" title="Discord">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="videos.html" class="sidebar-link" title="YouTube">
+            <a href="/videos" class="sidebar-link" title="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
         </div>
+        <script>
+            // Only show Get Key link on getkey.html
+            if (window.location.pathname.includes('getkey.html')) {
+                document.getElementById('getKeyLink').style.display = 'flex';
+            }
+        </script>
         <div class="theme-selector">
             <button class="theme-toggle" id="themeToggle" title="Change Theme">
                 <i class="fas fa-palette"></i>
