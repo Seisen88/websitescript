@@ -18,7 +18,6 @@ const bodyParser = require('body-parser');
 const PayPalSDK = require('./paypal-sdk');
 const JunkieKeySystem = require('./junkie-integration');
 const PaymentDatabase = require('./payment-database');
-const ResendEmailService = require('./resend-email');
 
 // Initialize PayPal SDK
 const paypalSDK = new PayPalSDK({
@@ -43,11 +42,6 @@ const paymentDB = new PaymentDatabase(
     process.env.DB_PATH || path.join(__dirname, 'payments.db')
 );
 
-// Initialize Resend email service
-const emailService = new ResendEmailService(
-    process.env.RESEND_API_KEY,
-    process.env.EMAIL_FROM
-);
 
 
 // Middleware
@@ -205,15 +199,7 @@ app.post('/api/paypal/capture-order', async (req, res) => {
             // Update database with keys
             await paymentDB.updatePaymentKeys(paymentInfo.transactionId, keyResult.keys);
 
-            // Send email via Resend
-            if (paymentInfo.payerEmail) {
-                await emailService.sendKeyEmail(
-                    paymentInfo.payerEmail,
-                    keyResult.keys[0],
-                    paymentInfo.tier,
-                    paymentInfo.transactionId
-                );
-            }
+            // Send email logic removed as per user request
 
             res.json({
                 success: true,
