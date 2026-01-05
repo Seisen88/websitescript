@@ -41,7 +41,9 @@ class ObfuscatorAPI {
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error || `Backend error: ${response.status}`);
+                console.error('Backend error response:', errorData);
+                const errorMsg = errorData.details || errorData.error || `Backend error: ${response.status}`;
+                throw new Error(errorMsg);
             }
 
             const data = await response.json();
@@ -58,9 +60,12 @@ class ObfuscatorAPI {
 
             // Re-throw the error with helpful message
             if (error.name === 'AbortError') {
-                throw new Error('Request timeout - obfuscation took too long');
+                throw new Error('Request timeout - obfuscation took too long. Try splitting your code into smaller chunks.');
             } else if (error.message.includes('fetch')) {
-                throw new Error('Cannot connect to backend server. Make sure the server is running on ' + apiUrl);
+                throw new Error('Cannot connect to backend server. Please check your internet connection.');
+            } else if (error.message.includes('Obfuscation failed')) {
+                // Show the actual backend error
+                throw new Error(`Backend error: ${error.message}\n\nThis might be because:\n- Your code is too large for the free tier\n- Prometheus found a syntax error\n- The server is out of memory\n\nTry using smaller code or check the console for details.`);
             } else {
                 throw error;
             }
