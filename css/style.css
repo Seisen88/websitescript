@@ -970,6 +970,31 @@ select:focus {
   line-height: 1.5;
 }
 
+/* Syntax Error Message */
+.syntax-error-message {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-sm);
+  color: #ef4444;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: shake 0.3s ease;
+}
+
+.syntax-error-message i {
+  font-size: 1rem;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
 /* ========================================
    FOOTER STYLES
    ======================================== */

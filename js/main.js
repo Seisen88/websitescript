@@ -142,6 +142,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Clear any previous syntax errors
+        hideSyntaxError();
+
+        // Basic Lua syntax validation
+        const syntaxError = validateLuaSyntax(code);
+        if (syntaxError) {
+            showSyntaxError(syntaxError);
+            return;
+        }
+
         // Disable button and show loading state
         obfuscateBtn.disabled = true;
         const originalHTML = obfuscateBtn.innerHTML;

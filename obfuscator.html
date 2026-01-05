@@ -1,195 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Seisen - A powerful Lua obfuscator written in pure Lua. Supports Lua51 and LuaU obfuscation.">
-    <meta name="keywords" content="lua, obfuscator, lua51, luau, seisen, code protection">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Seisen - A powerful Lua obfuscator written in pure Lua. Supports Lua51 and LuaU obfuscation."
+    />
+    <meta
+      name="keywords"
+      content="lua, obfuscator, lua51, luau, seisen, code protection"
+    />
     <title>Seisen - Lua Obfuscator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2310b981' d='M60,10 L35,55 L50,55 L40,90 L65,45 L50,45 Z'/></svg>">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2310b981' d='M60,10 L35,55 L50,55 L40,90 L65,45 L50,45 Z'/></svg>"
+    />
+  </head>
+  <body>
     <!-- Header Component -->
     <div id="header-container"></div>
 
     <!-- Main Content -->
     <main class="main-content obfuscator-page">
-        <div class="container">
-            <!-- Page Header -->
-            <section class="page-header">
-                <div class="page-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <h1>Lua Obfuscator</h1>
-                <p class="page-description">Protect your Lua scripts with powerful obfuscation - Supports Lua 5.1 and LuaU</p>
-            </section>
+      <div class="container">
+        <!-- Page Header -->
+        <section class="page-header">
+          <div class="page-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h1>Lua Obfuscator</h1>
+          <p class="page-description">
+            Protect your Lua scripts with powerful obfuscation - Supports Lua
+            5.1 and LuaU
+          </p>
+        </section>
 
-            <!-- Stats Overview -->
-            <section class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-chart-line stat-icon"></i>
-                    <div class="stat-label">Total Obfuscations</div>
-                    <div class="stat-value" id="stat-total">0</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-check-circle stat-icon"></i>
-                    <div class="stat-label">Success Rate</div>
-                    <div class="stat-value" id="stat-success">100%</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-file-code stat-icon"></i>
-                    <div class="stat-label">Average Size</div>
-                    <div class="stat-value" id="stat-size">-</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock stat-icon"></i>
-                    <div class="stat-label">Last Obfuscated</div>
-                    <div class="stat-value" id="stat-last">Never</div>
-                </div>
-            </section>
+        <!-- Stats Overview -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-chart-line stat-icon"></i>
+            <div class="stat-label">Total Obfuscations</div>
+            <div class="stat-value" id="stat-total">0</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-check-circle stat-icon"></i>
+            <div class="stat-label">Success Rate</div>
+            <div class="stat-value" id="stat-success">100%</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-file-code stat-icon"></i>
+            <div class="stat-label">Average Size</div>
+            <div class="stat-value" id="stat-size">-</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-clock stat-icon"></i>
+            <div class="stat-label">Last Obfuscated</div>
+            <div class="stat-value" id="stat-last">Never</div>
+          </div>
+        </section>
 
-            <!-- Controls -->
-            <section class="controls">
-                <div class="controls-grid">
-                    <div class="control-group">
-                        <label class="control-label" for="lua-version">Lua Version</label>
-                        <select id="lua-version">
-                            <option value="lua51">Lua 5.1</option>
-                            <option value="luau">LuaU (Roblox)</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="preset">Obfuscation Preset</label>
-                        <select id="preset">
-                            <option value="minify">Minify</option>
-                            <option value="weak">Weak</option>
-                            <option value="medium">Medium</option>
-                            <option value="strong" selected>Strong</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Upload File</label>
-                        <label for="file-upload" class="file-upload-btn">
-                            <i class="fas fa-upload"></i>
-                            <span id="file-name">Choose File</span>
-                            <input type="file" id="file-upload" accept=".lua,.txt" style="display: none;">
-                        </label>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button class="btn btn-primary" id="obfuscate-btn">
-                        <i class="fas fa-lock"></i>
-                        <span>Obfuscate Code</span>
-                    </button>
-                    <button class="btn btn-secondary" id="history-btn">
-                        <i class="fas fa-history"></i>
-                        <span>View History</span>
-                    </button>
-                </div>
-            </section>
+        <!-- Controls -->
+        <section class="controls">
+          <div class="controls-grid">
+            <div class="control-group">
+              <label class="control-label" for="lua-version">Lua Version</label>
+              <select id="lua-version">
+                <option value="lua51">Lua 5.1</option>
+                <option value="luau">LuaU (Roblox)</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="preset"
+                >Obfuscation Preset</label
+              >
+              <select id="preset">
+                <option value="minify">Minify</option>
+                <option value="weak">Weak</option>
+                <option value="medium">Medium</option>
+                <option value="strong" selected>Strong</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Upload File</label>
+              <label for="file-upload" class="file-upload-btn">
+                <i class="fas fa-upload"></i>
+                <span id="file-name">Choose File</span>
+                <input
+                  type="file"
+                  id="file-upload"
+                  accept=".lua,.txt"
+                  style="display: none"
+                />
+              </label>
+            </div>
+          </div>
+          <div class="button-group">
+            <button class="btn btn-primary" id="obfuscate-btn">
+              <i class="fas fa-lock"></i>
+              <span>Obfuscate Code</span>
+            </button>
+            <button class="btn btn-secondary" id="history-btn">
+              <i class="fas fa-history"></i>
+              <span>View History</span>
+            </button>
+          </div>
+        </section>
 
-            <!-- Code Panels -->
-            <section class="obfuscator-container">
-                <div class="code-panel">
-                    <div class="panel-header">
-                        <h2 class="panel-title">
-                            <i class="fas fa-code"></i> Input Code
-                        </h2>
-                    </div>
-                    <div class="code-editor-wrapper">
-                        <button class="btn-clear" id="clear-input-btn" style="display: none;">
-                            <i class="fas fa-times"></i>
-                            <span>Clear</span>
-                        </button>
-                        <div class="line-numbers" id="input-line-numbers">1</div>
-                        <textarea 
-                            id="input-code" 
-                            placeholder="-- Paste your Lua code here
+        <!-- Code Panels -->
+        <section class="obfuscator-container">
+          <div class="code-panel">
+            <div class="panel-header">
+              <h2 class="panel-title">
+                <i class="fas fa-code"></i> Input Code
+              </h2>
+            </div>
+            <div class="code-editor-wrapper">
+              <button
+                class="btn-clear"
+                id="clear-input-btn"
+                style="display: none"
+              >
+                <i class="fas fa-times"></i>
+                <span>Clear</span>
+              </button>
+              <div class="line-numbers" id="input-line-numbers">1</div>
+              <textarea
+                id="input-code"
+                placeholder="-- Paste your Lua code here
 -- Example:
 local function greet(name)
     print('Hello, ' .. name .. '!')
 end
 
 greet('World')"
-                            spellcheck="false"
-                        ></textarea>
-                    </div>
-                </div>
-                <div class="code-panel">
-                    <div class="panel-header">
-                        <h2 class="panel-title">
-                            <i class="fas fa-shield-alt"></i> Obfuscated Output
-                        </h2>
-                    </div>
-                    <div class="code-editor-wrapper">
-                        <div id="output-actions" class="output-action-buttons" style="display: none;">
-                            <button class="btn btn-secondary btn-small" id="new-script-btn">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>New Script</span>
-                            </button>
-                            <button class="btn btn-success btn-small" id="download-btn">
-                                <i class="fas fa-download"></i>
-                                <span>Download</span>
-                            </button>
-                            <button class="btn btn-primary btn-small" id="copy-btn">
-                                <i class="fas fa-copy"></i>
-                                <span>Copy Code</span>
-                            </button>
-                        </div>
-                        <div class="line-numbers" id="output-line-numbers">1</div>
-                        <textarea 
-                            id="output-code" 
-                            placeholder="Obfuscated code will appear here..."
-                            readonly
-                            spellcheck="false"
-                        ></textarea>
-                        <div class="syntax-highlight"></div>
-                    </div>
-                </div>
-            </section>
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div
+              id="syntax-error"
+              class="syntax-error-message"
+              style="display: none"
+            >
+              <i class="fas fa-exclamation-triangle"></i>
+              <span id="syntax-error-text"></span>
+            </div>
+          </div>
+          <div class="code-panel">
+            <div class="panel-header">
+              <h2 class="panel-title">
+                <i class="fas fa-shield-alt"></i> Obfuscated Output
+              </h2>
+            </div>
+            <div class="code-editor-wrapper">
+              <div
+                id="output-actions"
+                class="output-action-buttons"
+                style="display: none"
+              >
+                <button class="btn btn-secondary btn-small" id="new-script-btn">
+                  <i class="fas fa-plus-circle"></i>
+                  <span>New Script</span>
+                </button>
+                <button class="btn btn-success btn-small" id="download-btn">
+                  <i class="fas fa-download"></i>
+                  <span>Download</span>
+                </button>
+                <button class="btn btn-primary btn-small" id="copy-btn">
+                  <i class="fas fa-copy"></i>
+                  <span>Copy Code</span>
+                </button>
+              </div>
+              <div class="line-numbers" id="output-line-numbers">1</div>
+              <textarea
+                id="output-code"
+                placeholder="Obfuscated code will appear here..."
+                readonly
+                spellcheck="false"
+              ></textarea>
+              <div class="syntax-highlight"></div>
+            </div>
+          </div>
+        </section>
 
-            <!-- Features Section -->
-            <section class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-bolt feature-icon"></i>
-                    <h3>Fast & Efficient</h3>
-                    <p>Written in pure Lua for optimal performance and compatibility</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt feature-icon"></i>
-                    <h3>Strong Protection</h3>
-                    <p>Multiple obfuscation presets from minify to strong protection</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bullseye feature-icon"></i>
-                    <h3>Lua51 & LuaU</h3>
-                    <p>Full support for Lua 5.1 and Roblox's LuaU dialect</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-code-branch feature-icon"></i>
-                    <h3>Prometheus</h3>
-                    <p>Powered by Prometheus obfuscator, licensed under GNU AGPL v3.0</p>
-                </div>
-            </section>
-        </div>
+        <!-- Features Section -->
+        <section class="features-grid">
+          <div class="feature-card">
+            <i class="fas fa-bolt feature-icon"></i>
+            <h3>Fast & Efficient</h3>
+            <p>Written in pure Lua for optimal performance and compatibility</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-shield-alt feature-icon"></i>
+            <h3>Strong Protection</h3>
+            <p>Multiple obfuscation presets from minify to strong protection</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-bullseye feature-icon"></i>
+            <h3>Lua51 & LuaU</h3>
+            <p>Full support for Lua 5.1 and Roblox's LuaU dialect</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-code-branch feature-icon"></i>
+            <h3>Prometheus</h3>
+            <p>
+              Powered by Prometheus obfuscator, licensed under GNU AGPL v3.0
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- History Modal -->
     <div id="history-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-history"></i> Code History</h2>
-                <button class="modal-close" id="close-history">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="history-list"></div>
-                <div id="history-empty" style="display: none; text-align: center; padding: 2rem; color: var(--text-muted);">
-                    <p>No code history yet. Obfuscate some code to start building your history!</p>
-                </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-history"></i> Code History</h2>
+          <button class="modal-close" id="close-history">&times;</button>
         </div>
+        <div class="modal-body">
+          <div id="history-list"></div>
+          <div
+            id="history-empty"
+            style="
+              display: none;
+              text-align: center;
+              padding: 2rem;
+              color: var(--text-muted);
+            "
+          >
+            <p>
+              No code history yet. Obfuscate some code to start building your
+              history!
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer Component -->
@@ -201,5 +252,5 @@ greet('World')"
     <script src="js/components.js"></script>
     <script src="js/obfuscator.js"></script>
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
