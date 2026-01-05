@@ -147,16 +147,16 @@ function showProcessingModal() {
     modal.id = 'processing-modal';
     
     modal.innerHTML = `
-        <div class="modal-content" style="text-align: center;">
+        <div class="modal-content" style="text-align: center; padding: 40px 30px;">
             <div class="modal-body">
-                <div class="spinner" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;">
+                <div class="spinner" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px; display: inline-block;">
                     <i class="fas fa-circle-notch fa-spin"></i>
                 </div>
-                <h2>Processing Payment...</h2>
-                <p>Please wait while we confirm your payment and generate your key.</p>
-                <hr>
-                <p style="color: var(--warning); font-weight: bold;">
-                    ⚠️ DO NOT CLOSE THIS WINDOW
+                <h2 style="margin-bottom: 10px;">Processing Payment...</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Please wait while we confirm your payment and generate your key.</p>
+                <div style="height: 2px; background: var(--border); margin: 20px 0;"></div>
+                <p style="color: #ef4444; font-weight: 600; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px;">
+                    <i class="fas fa-exclamation-triangle"></i> Do not close this window
                 </p>
             </div>
         </div>
@@ -201,14 +201,14 @@ function showKeyModal(keys, tier) {
                     <li>Paste your key when prompted</li>
                     <li>Enjoy premium features!</li>
                 </ol>
-                <button class="btn btn-primary btn-large" onclick="copyKey('${keys[0]}')">
+                <button class="btn btn-primary btn-large" style="width: 100%; margin-bottom: 10px;" onclick="copyKey('${keys[0]}')">
                     <i class="fas fa-copy"></i> Copy Key
                 </button>
-                <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
-                    <button class="btn btn-secondary" onclick="this.closest('.payment-modal').remove(); showSavedKeysModal()">
-                        <i class="fas fa-history"></i> View Saved Keys
+                <div style="display: flex; gap: 10px; justify-content: space-between;">
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="this.closest('.payment-modal').remove(); showSavedKeysModal()">
+                        <i class="fas fa-history"></i> Saved Keys
                     </button>
-                    <button class="btn btn-secondary" onclick="window.location.href='premium.html'">
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="window.location.href='premium.html'">
                         Close
                     </button>
                 </div>
