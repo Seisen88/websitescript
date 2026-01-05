@@ -147,8 +147,10 @@ body {
   align-items: center;
   width: 100%;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
   padding: 0.5rem 0;
-  scrollbar-width: none; /* Hide scrollbar for cleaner look */
+  margin: 0;
+  scrollbar-width: none;
 }
 
 .sidebar-links::-webkit-scrollbar {
@@ -158,9 +160,11 @@ body {
 .sidebar-footer-actions {
   margin-top: auto;
   padding-top: 1rem;
+  padding-bottom: 2rem; /* Add bottom padding */
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .sidebar-link {
@@ -175,6 +179,8 @@ body {
   transition: all var(--transition-fast);
   position: relative;
   border-radius: var(--radius-sm);
+  margin: 0 auto; /* Force horizontal centering */
+  flex-shrink: 0;
 }
 
 .sidebar-link:hover {
