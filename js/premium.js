@@ -204,9 +204,14 @@ function showKeyModal(keys, tier) {
                 <button class="btn btn-primary btn-large" onclick="copyKey('${keys[0]}')">
                     <i class="fas fa-copy"></i> Copy Key
                 </button>
-                <button class="btn btn-secondary" onclick="window.location.href='premium.html'">
-                    Close
-                </button>
+                <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
+                    <button class="btn btn-secondary" onclick="this.closest('.payment-modal').remove(); showSavedKeysModal()">
+                        <i class="fas fa-history"></i> View Saved Keys
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='premium.html'">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
     `;
