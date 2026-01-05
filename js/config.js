@@ -1,7 +1,9 @@
 // API Configuration
 const API_CONFIG = {
-    // Backend API base URL
-    baseUrl: 'http://localhost:3000',
+    // Backend API base URL - automatically detects environment
+    baseUrl: window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000'
+        : 'https://seisen-backend.vercel.app',
     
     // Request timeout in milliseconds
     timeout: 60000, // 60 seconds
