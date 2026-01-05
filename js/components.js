@@ -192,7 +192,7 @@ function loadFooter() {
 }
 
 function updateActiveNavLink() {
-  const currentPage = window.location.pathname.split("/").pop() || "obfuscator.html";
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll(".sidebar-link");
 
   navLinks.forEach((link) => {
@@ -200,7 +200,7 @@ function updateActiveNavLink() {
     const linkHref = link.getAttribute("href");
     if (
       linkHref === currentPage ||
-      (currentPage === "" && linkHref === "obfuscator.html")
+      (currentPage === "index.html" && linkHref === "index.html")
     ) {
       link.classList.add("active");
     }
