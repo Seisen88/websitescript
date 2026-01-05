@@ -562,5 +562,5 @@ app.listen(PORT, () => {
     console.log('\nReady to obfuscate! 🚀');
 });
 
-// Export for Vercel serverless deployment
+// Export app for testing
 module.exports = app;

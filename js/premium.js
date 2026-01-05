@@ -1,6 +1,6 @@
 // Premium Page JavaScript - PayPal SDK Integration
 
-// Backend URL - uses Vercel backend in production, localhost for development
+// Backend URL - uses Render backend in production, localhost for development
 const BACKEND_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3000'
     : 'https://seisen-backend.onrender.com';
