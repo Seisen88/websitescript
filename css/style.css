@@ -3704,3 +3704,57 @@ select:focus {
 .script-actions .btn-discontinued::before {
   display: none;
 }
+
+/* Notification Toast Styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid #10b981;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10000;
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-width: 400px;
+  width: auto;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification-error {
+  border-left-color: #ef4444;
+}
+
+.notification-error i {
+  color: #ef4444;
+}
+
+.notification-info {
+  border-left-color: #3b82f6;
+}
+
+.notification-info i {
+  color: #3b82f6;
+}
+
+.notification i {
+  font-size: 1.2rem;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.notification span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
