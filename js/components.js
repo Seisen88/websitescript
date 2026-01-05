@@ -52,65 +52,72 @@ function loadHeader() {
     </div>
 </nav>
 
-<!-- Theme Selector Modal -->
-<div class="theme-modal" id="themeModal">
-    <div class="theme-modal-content">
-        <div class="theme-modal-header">
-            <h3>Select Theme</h3>
-            <button class="theme-modal-close" id="themeModalClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="theme-options">
-            <button class="theme-option" data-theme="default">
-                <i class="fas fa-circle"></i>
-                <span>Default</span>
-            </button>
-            <button class="theme-option" data-theme="light">
-                <i class="fas fa-sun"></i>
-                <span>Light</span>
-            </button>
-            <button class="theme-option" data-theme="forest">
-                <i class="fas fa-tree"></i>
-                <span>Forest</span>
-            </button>
-            <button class="theme-option" data-theme="purple">
-                <i class="fas fa-gem"></i>
-                <span>Purple</span>
-            </button>
-            <button class="theme-option" data-theme="midnight">
-                <i class="fas fa-moon"></i>
-                <span>Midnight</span>
-            </button>
-            <button class="theme-option" data-theme="sunset">
-                <i class="fas fa-cloud-sun"></i>
-                <span>Sunset</span>
-            </button>
-            <button class="theme-option" data-theme="ocean">
-                <i class="fas fa-water"></i>
-                <span>Ocean</span>
-            </button>
-            <button class="theme-option" data-theme="cherry">
-                <i class="fas fa-heart"></i>
-                <span>Cherry</span>
-            </button>
-            <button class="theme-option" data-theme="matrix">
-                <i class="fas fa-code"></i>
-                <span>Matrix</span>
-            </button>
-            <button class="theme-option" data-theme="coffee">
-                <i class="fas fa-mug-hot"></i>
-                <span>Coffee</span>
-            </button>
-            <button class="theme-option" data-theme="lavender">
-                <i class="fas fa-spa"></i>
-                <span>Lavender</span>
-            </button>
-            <button class="theme-option" data-theme="nord">
-                <i class="fas fa-snowflake"></i>
-                <span>Nord</span>
-            </button>
-        </div>
+<!-- Theme Selector Panel -->
+<div class="theme-panel" id="themePanel">
+    <div class="theme-panel-header">
+        <span>SELECT THEME</span>
+    </div>
+    <div class="theme-panel-options">
+        <button class="theme-panel-option" data-theme="default">
+            <i class="fas fa-circle"></i>
+            <span>Default</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="light">
+            <i class="fas fa-sun"></i>
+            <span>Light</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="forest">
+            <i class="fas fa-tree"></i>
+            <span>Forest</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="purple">
+            <i class="fas fa-gem"></i>
+            <span>Purple</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="midnight">
+            <i class="fas fa-moon"></i>
+            <span>Midnight</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="sunset">
+            <i class="fas fa-cloud-sun"></i>
+            <span>Sunset</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="ocean">
+            <i class="fas fa-water"></i>
+            <span>Ocean</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="cherry">
+            <i class="fas fa-heart"></i>
+            <span>Cherry</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="matrix">
+            <i class="fas fa-code"></i>
+            <span>Matrix</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="coffee">
+            <i class="fas fa-mug-hot"></i>
+            <span>Coffee</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="lavender">
+            <i class="fas fa-spa"></i>
+            <span>Lavender</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
+        <button class="theme-panel-option" data-theme="nord">
+            <i class="fas fa-snowflake"></i>
+            <span>Nord</span>
+            <i class="fas fa-check theme-check"></i>
+        </button>
     </div>
 </div>
     `;
@@ -194,27 +201,20 @@ function initTheme() {
   // Set up event listeners after DOM is loaded
   setTimeout(() => {
     const themeToggle = document.getElementById('themeToggle');
-    const themeModal = document.getElementById('themeModal');
-    const themeModalClose = document.getElementById('themeModalClose');
-    const themeOptions = document.querySelectorAll('.theme-option');
+    const themePanel = document.getElementById('themePanel');
+    const themeOptions = document.querySelectorAll('.theme-panel-option');
     
-    if (themeToggle && themeModal) {
-      // Open theme modal
-      themeToggle.addEventListener('click', () => {
-        themeModal.classList.add('active');
+    if (themeToggle && themePanel) {
+      // Toggle theme panel
+      themeToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themePanel.classList.toggle('active');
       });
       
-      // Close theme modal
-      if (themeModalClose) {
-        themeModalClose.addEventListener('click', () => {
-          themeModal.classList.remove('active');
-        });
-      }
-      
-      // Close on outside click
-      themeModal.addEventListener('click', (e) => {
-        if (e.target === themeModal) {
-          themeModal.classList.remove('active');
+      // Close panel when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!themePanel.contains(e.target) && !themeToggle.contains(e.target)) {
+          themePanel.classList.remove('active');
         }
       });
       
@@ -224,7 +224,6 @@ function initTheme() {
           const theme = option.getAttribute('data-theme');
           applyTheme(theme);
           localStorage.setItem('selectedTheme', theme);
-          themeModal.classList.remove('active');
           
           // Update active state
           themeOptions.forEach(opt => opt.classList.remove('active'));
