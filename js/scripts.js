@@ -183,45 +183,51 @@ function parseLuaGameList(luaCode, type = 'Free') {
   return games;
 }
 
-
 function createScriptCard(game) {
-    const card = document.createElement("div");
-    card.className = "script-card";
-    card.dataset.scriptId = game.id; // Store script ID for detail page
+    const card = document.createElement('div');
+    card.className = 'script-card';
     
-    // Make card clickable to go to detail page
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', (e) => {
-        // Don't navigate if clicking on buttons
-        if (e.target.closest('button')) {
-            return;
-        }
-        window.location.href = `script-detail.html?id=${game.id}`;
-    });
+    // Placeholder image while loading
+    const placeholderUrl = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect fill=%22%231a1f2e%22 width=%22512%22 height=%22512%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2248%22 fill=%22%23666%22%3ENo Image%3C/text%3E%3C/svg%3E';
     
+    const isDiscontinued = game.type === 'Discontinued' || game.status === 'Discontinued';
+
     card.innerHTML = `
         <div class="script-thumbnail">
-            <img src="https://via.placeholder.com/400x225/1a1f2e/10b981?text=${encodeURIComponent(game.name)}" 
-                 alt="${game.name}" 
-                 class="game-thumbnail">
-            <span class="script-type type-${game.displayType.toLowerCase().replace(/\s+/g, '-')}">${game.displayType}</span>
+            <img src="${placeholderUrl}" alt="${game.name}" class="game-thumbnail" loading="lazy">
+            <div class="script-status">
+                <span class="status-badge status-${(game.displayType || game.type).toLowerCase().replace(/\s+/g, '-').replace('&', '')}">
+                    <i class="fas fa-circle"></i> ${game.displayType === 'Free & Premium' ? 'Free & Premium' : (game.type === 'Free' ? 'Working' : game.type)}
+                </span>
+            </div>
         </div>
         <div class="script-info">
-            <div class="script-name">${game.name}</div>
+            <h3 class="script-name">
+                ${game.name}
+            </h3>
             <div class="script-actions">
-                ${game.displayType !== 'Discontinued' ? `
-                    <button class="btn btn-primary" onclick="event.stopPropagation(); copyScript('${game.id}')">
-                        <i class="fas fa-copy"></i>
-                        <span>Copy</span>
-                    </button>
-                    <button class="btn btn-secondary" onclick="event.stopPropagation(); getKey()">
-                        <i class="fas fa-key"></i>
-                        <span>Get key</span>
-                    </button>
-                ` : `
-                    <button class="btn btn-secondary" disabled>
+                ${isDiscontinued ? `
+                    <button class="btn btn-discontinued" disabled>
                         <i class="fas fa-ban"></i>
                         <span>Discontinued</span>
+                    </button>
+                ` : game.additionalUrls ? `
+                    <button class="btn btn-secondary btn-copy-script" onclick="copyScript('${game.scriptUrl}')">
+                        <i class="fas fa-copy"></i>
+                        <span>Copy Free</span>
+                    </button>
+                    <button class="btn btn-primary btn-copy-script" onclick="copyScript('${game.additionalUrls[0].url}')">
+                        <i class="fas fa-copy"></i>
+                        <span>Copy Premium</span>
+                    </button>
+                ` : `
+                    <button class="btn btn-secondary btn-copy-script" onclick="copyScript('${game.scriptUrl}')">
+                        <i class="fas fa-copy"></i>
+                        <span>Copy script</span>
+                    </button>
+                    <button class="btn btn-primary btn-get-key" onclick="getKey()">
+                        <i class="fas fa-key"></i>
+                        <span>Get key</span>
                     </button>
                 `}
             </div>
