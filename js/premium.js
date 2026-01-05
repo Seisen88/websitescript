@@ -389,8 +389,9 @@ function showTicketModal(plan, amount, currency, discordInvite) {
                     <li>Join our Discord server</li>
                     <li>Go to the #support channel</li>
                     <li>Open a ticket</li>
-                    <li>Mention you want to purchase <strong>${plan}</strong> premium for <strong>${amount} ${currency}</strong></li>
-                    <li>Our team will guide you through the payment process</li>
+                    <li><strong>Complete your payment first</strong> (Robux or GCash)</li>
+                    <li>Send the <strong>payment receipt</strong> or proof in the ticket</li>
+                    <li>Our team will check and process your key immediately</li>
                 </ol>
                 <div class="ticket-info">
                     <p><i class="fas fa-info-circle"></i> Ticket details have been copied to your clipboard!</p>
