@@ -3515,7 +3515,7 @@ select:focus {
 .partner-logo {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  background: transparent;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
