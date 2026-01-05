@@ -3523,6 +3523,32 @@ select:focus {
   font-size: 2.5rem;
   color: #10b981;
   margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.partner-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.prometheus-logo {
+  background: #1a1a1a;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
+}
+
+.prometheus-icon {
+  font-size: 1.8rem;
+}
+
+.prometheus-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: var(--font-primary);
 }
 
 .partner-card h3 {
