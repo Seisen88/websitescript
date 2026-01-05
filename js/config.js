@@ -6,7 +6,7 @@ const API_CONFIG = {
         : 'https://seisen-backend.onrender.com',
     
     // Request timeout in milliseconds
-    timeout: 60000, // 60 seconds
+    timeout: 10000, // 10 seconds
     
     // Enable fallback to simulation if backend is unavailable
     enableFallback: true,
