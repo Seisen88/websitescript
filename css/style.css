@@ -3706,7 +3706,7 @@ select:focus {
 }
 
 /* Notification Toast Styles */
-.notification {
+.toast-notification {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -3727,33 +3727,33 @@ select:focus {
   width: auto;
 }
 
-.notification.show {
+.toast-notification.show {
   transform: translateX(0);
 }
 
-.notification-error {
+.toast-notification-error {
   border-left-color: #ef4444;
 }
 
-.notification-error i {
+.toast-notification-error i {
   color: #ef4444;
 }
 
-.notification-info {
+.toast-notification-info {
   border-left-color: #3b82f6;
 }
 
-.notification-info i {
+.toast-notification-info i {
   color: #3b82f6;
 }
 
-.notification i {
+.toast-notification i {
   font-size: 1.2rem;
   color: #10b981;
   flex-shrink: 0;
 }
 
-.notification span {
+.toast-notification span {
   font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.4;

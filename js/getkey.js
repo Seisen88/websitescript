@@ -2,7 +2,7 @@
 
 function openKeyPage() {
     // Use centralized key system URL from config
-    const keyPageUrl = window.API_CONFIG ? window.API_CONFIG.keySystemUrl : 'https://work.ink/YOUR_LINK';
+    const keyPageUrl = window.API_CONFIG ? window.API_CONFIG.keySystemUrl : 'https://junkie-development.de/get-key/seisenhub';
     
     showNotification('Opening key checkpoint in new tab...', 'info');
     
@@ -37,13 +37,13 @@ function copyLoader() {
 
 function showNotification(message, type = 'success') {
     // Remove existing notification
-    const existing = document.querySelector('.notification');
+    const existing = document.querySelector('.toast-notification');
     if (existing) {
         existing.remove();
     }
 
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `toast-notification toast-notification-${type}`;
     
     let icon = 'check-circle';
     if (type === 'error') icon = 'exclamation-circle';

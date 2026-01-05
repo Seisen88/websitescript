@@ -409,13 +409,13 @@ function showTicketModal(plan, amount, currency, discordInvite) {
 
 // Notification System
 function showNotification(message, type = 'success') {
-    const existing = document.querySelector('.notification');
+    const existing = document.querySelector('.toast-notification');
     if (existing) {
         existing.remove();
     }
 
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `toast-notification toast-notification-${type}`;
     
     let icon = 'check-circle';
     if (type === 'error') icon = 'exclamation-circle';

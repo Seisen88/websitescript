@@ -275,78 +275,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Notification system
+    // Notification system
     function showNotification(message, type = 'info') {
         // Remove existing notifications
-        const existing = document.querySelector('.notification');
+        const existing = document.querySelector('.toast-notification');
         if (existing) {
             existing.remove();
         }
 
         // Create notification element
         const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
+        notification.className = `toast-notification toast-notification-${type}`;
         
-        // Add styles
-        Object.assign(notification.style, {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            padding: '1rem 1.5rem',
-            borderRadius: '12px',
-            background: type === 'success' 
-                ? 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-                : type === 'error'
-                ? 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-                : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            color: 'white',
-            fontWeight: '600',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-            zIndex: '10000',
-            animation: 'slideInRight 0.3s ease',
-            cursor: 'pointer'
-        });
-
-        // Add animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(400px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(400px);
-                    opacity: 0;
-                }
-            }
+        let icon = 'check-circle';
+        if (type === 'error') icon = 'exclamation-circle';
+        if (type === 'info') icon = 'info-circle';
+        
+        notification.innerHTML = `
+            <i class="fas fa-${icon}"></i>
+            <span>${message}</span>
         `;
-        document.head.appendChild(style);
-
+        
         document.body.appendChild(notification);
-
-        // Click to dismiss
-        notification.addEventListener('click', () => {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        });
-
-        // Auto dismiss after 3 seconds
+        
+        // Trigger animation
         setTimeout(() => {
-            if (notification.parentElement) {
-                notification.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }
+            notification.classList.add('show');
+        }, 10);
+
+        // Auto dismiss
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
 

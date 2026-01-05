@@ -70,22 +70,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show notification
         const notification = document.createElement('div');
-        notification.className = 'notification notification-success';
-        notification.textContent = 'Code loaded from history!';
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            z-index: 10000;
+        notification.className = 'toast-notification toast-notification-success';
+        notification.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>Code loaded from history!</span>
         `;
+        
         document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 3000);
+        
+        setTimeout(() => notification.classList.add('show'), 10);
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
     }
 
     // Render history list

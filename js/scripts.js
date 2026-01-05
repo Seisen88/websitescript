@@ -311,13 +311,13 @@ function getKey() {
 
 function showNotification(message, type = "success") {
   // Remove existing notification
-  const existing = document.querySelector(".notification");
+  const existing = document.querySelector(".toast-notification");
   if (existing) {
     existing.remove();
   }
 
   const notification = document.createElement("div");
-  notification.className = `notification notification-${type}`;
+  notification.className = `toast-notification toast-notification-${type}`;
   notification.innerHTML = `
         <i class="fas fa-${
           type === "success" ? "check-circle" : "exclamation-circle"
