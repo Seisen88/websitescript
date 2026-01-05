@@ -93,16 +93,10 @@ function cleanupTempFiles() {
 // Run cleanup on startup
 cleanupTempFiles();
 
+
 // Run cleanup every 5 minutes
 setInterval(cleanupTempFiles, 5 * 60 * 1000);
 
-// Force garbage collection periodically (if available)
-if (global.gc) {
-    setInterval(() => {
-        global.gc();
-        console.log('Manual garbage collection triggered');
-    }, 10 * 60 * 1000); // Every 10 minutes
-}
 
 // Logging middleware
 app.use((req, res, next) => {
