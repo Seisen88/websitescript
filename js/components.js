@@ -150,7 +150,7 @@ function loadFooter() {
         <div class="footer-content">
             <div class="footer-section">
                 <h3><i class="fas fa-bolt" style="color: #10b981;"></i> Seisen</h3>
-                <p>The ultimate hub for Roblox scripting. From advanced obfuscation to premium scripts and in-depth tutorials, we provide the tools you need to succeed.</p>
+                <p>Premium scripts and tools for enhanced gaming experiences.</p>
             </div>
             <div class="footer-section">
                 <h4>Products</h4>
