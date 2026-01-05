@@ -1,20 +1,18 @@
 services:
-  # Backend Web Service
+  # Backend Web Service with Docker
   - type: web
     name: seisen-backend
-    env: node
+    env: docker
     region: oregon
     plan: free
-    rootDir: backend
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: ./backend/Dockerfile
     envVars:
       - key: PORT
         value: 3000
       - key: NODE_ENV
         value: production
       - key: PROMETHEUS_PATH
-        value: /opt/render/project/src/prometheus
+        value: /app/prometheus
       - key: LUA_EXECUTABLE
         value: lua5.3
       - key: TEMP_DIR
@@ -40,25 +38,8 @@ services:
       - key: JUNKIE_SERVICE
         sync: false
       - key: DB_PATH
-        value: /opt/render/project/src/payments.db
+        value: /app/payments.db
       - key: RESEND_API_KEY
         sync: false
       - key: EMAIL_FROM
         sync: false
-    # Install Lua before starting
-    buildCommand: |
-      apt-get update && apt-get install -y lua5.3
-      npm install
-
-  # Frontend Static Site
-  - type: web
-    name: seisen-frontend
-    env: static
-    region: oregon
-    plan: free
-    buildCommand: echo "No build needed for static site"
-    staticPublishPath: .
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
