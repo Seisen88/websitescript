@@ -67,6 +67,18 @@ function loadHeader() {
                         <button class="theme-option" onclick="setTheme('midnight')">
                             <i class="fas fa-star"></i> Midnight
                         </button>
+                        <button class="theme-option" onclick="setTheme('sunset')">
+                            <i class="fas fa-sun"></i> Sunset
+                        </button>
+                        <button class="theme-option" onclick="setTheme('ocean')">
+                            <i class="fas fa-water"></i> Ocean
+                        </button>
+                        <button class="theme-option" onclick="setTheme('cherry')">
+                            <i class="fas fa-spa"></i> Cherry
+                        </button>
+                        <button class="theme-option" onclick="setTheme('matrix')">
+                            <i class="fas fa-terminal"></i> Matrix
+                        </button>
                     </div>
                 </div>
             </div>
@@ -142,6 +154,50 @@ const THEMES = {
         '--text-secondary': '#8b949e',
         '--border-color': '#30363d',
         '--border-color-light': '#484f58'
+    },
+    sunset: {
+        '--bg-primary': '#1a0b0b',
+        '--bg-secondary': '#2d1212',
+        '--bg-tertiary': '#401a1a',
+        '--bg-card': '#331515',
+        '--bg-card-hover': '#4a1f1f',
+        '--text-primary': '#ffd6cf',
+        '--text-secondary': '#ff9e91',
+        '--border-color': '#592424',
+        '--border-color-light': '#732e2e'
+    },
+    ocean: {
+        '--bg-primary': '#05111a',
+        '--bg-secondary': '#0a2336',
+        '--bg-tertiary': '#0f3552',
+        '--bg-card': '#0c2b42',
+        '--bg-card-hover': '#113c5c',
+        '--text-primary': '#cce7ff',
+        '--text-secondary': '#66b3ff',
+        '--border-color': '#164d75',
+        '--border-color-light': '#1d6499'
+    },
+    cherry: {
+        '--bg-primary': '#1a050d',
+        '--bg-secondary': '#2b0915',
+        '--bg-tertiary': '#3d0d1e',
+        '--bg-card': '#330b19',
+        '--bg-card-hover': '#4a1024',
+        '--text-primary': '#ffcce0',
+        '--text-secondary': '#ff66a3',
+        '--border-color': '#59142e',
+        '--border-color-light': '#731a3b'
+    },
+    matrix: {
+        '--bg-primary': '#000000',
+        '--bg-secondary': '#050a05',
+        '--bg-tertiary': '#0a140a',
+        '--bg-card': '#0a140a',
+        '--bg-card-hover': '#0f1f0f',
+        '--text-primary': '#00ff00',
+        '--text-secondary': '#008f00',
+        '--border-color': '#003300',
+        '--border-color-light': '#004d00'
     }
 };
 
