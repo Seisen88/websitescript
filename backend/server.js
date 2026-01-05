@@ -98,6 +98,21 @@ cleanupTempFiles();
 setInterval(cleanupTempFiles, 5 * 60 * 1000);
 
 
+
+// URL Rewriting - Remove .html extension from URLs
+app.use((req, res, next) => {
+    // If URL doesn't have an extension and doesn't start with /api
+    if (!req.path.includes('.') && !req.path.startsWith('/api')) {
+        const htmlPath = path.join(__dirname, '..', req.path + '.html');
+        
+        // Check if the .html file exists
+        if (fs.existsSync(htmlPath)) {
+            return res.sendFile(htmlPath);
+        }
+    }
+    next();
+});
+
 // Logging middleware
 app.use((req, res, next) => {
     if (DEBUG) {
