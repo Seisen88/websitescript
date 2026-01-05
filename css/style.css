@@ -120,6 +120,7 @@ body {
   height: 100%;
   width: 100%;
   align-items: center;
+  padding: 1.5rem 10px 0 10px; /* Add horizontal padding to center 40px icons in 60px sidebar */
 }
 
 .sidebar-logo {
