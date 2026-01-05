@@ -149,9 +149,22 @@ function showProcessingModal() {
     modal.innerHTML = `
         <div class="modal-content" style="text-align: center; padding: 40px 30px;">
             <div class="modal-body">
-                <div class="spinner" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px; display: inline-block;">
-                    <i class="fas fa-circle-notch fa-spin"></i>
-                </div>
+                <style>
+                    .css-spinner {
+                        width: 60px;
+                        height: 60px;
+                        border: 5px solid rgba(255, 255, 255, 0.1);
+                        border-radius: 50%;
+                        border-top-color: var(--primary, #10b981);
+                        animation: spin 1s ease-in-out infinite;
+                        margin: 0 auto 20px auto;
+                    }
+                    @keyframes spin {
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+                <div class="css-spinner"></div>
+                
                 <h2 style="margin-bottom: 10px;">Processing Payment...</h2>
                 <p style="color: var(--text-muted); margin-bottom: 20px;">Please wait while we confirm your payment and generate your key.</p>
                 <div style="height: 2px; background: var(--border); margin: 20px 0;"></div>
