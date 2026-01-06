@@ -30,17 +30,21 @@
             </section>
 
             <!-- Payment Method Tabs -->
-            <section class="payment-tabs">
-                <button class="payment-tab active" data-method="paypal">
-                    <img src="images/paypal1.png" alt="PayPal" style="height: 48px; width: auto; object-fit: contain;">
-                </button>
-                <button class="payment-tab" data-method="robux">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Robux_2019_Logo_gold.svg" alt="Robux" style="height: 24px; width: auto; object-fit: contain;">
-                </button>
-                <button class="payment-tab" data-method="gcash">
-                    <img src="images/gcash.png" alt="GCash" style="height: 22px; width: auto; object-fit: contain;">
-                </button>
-            </section>
+            <!-- Payment Method Tabs -->
+            <div class="payment-selection-container" style="text-align: left; margin-bottom: 3rem;">
+                <h3 style="margin-bottom: 1rem; font-size: 1.2rem; color: var(--text-primary);">Payment Method :</h3>
+                <section class="payment-tabs" style="justify-content: flex-start; margin-bottom: 0;">
+                    <button class="payment-tab active" data-method="paypal">
+                        <img src="images/paypal1.png" alt="PayPal" style="height: 35px; width: auto; object-fit: contain;">
+                    </button>
+                    <button class="payment-tab" data-method="robux">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Robux_2019_Logo_gold.svg" alt="Robux" style="height: 24px; width: auto; object-fit: contain;">
+                    </button>
+                    <button class="payment-tab" data-method="gcash">
+                        <img src="images/gcash.png" alt="GCash" style="height: 22px; width: auto; object-fit: contain;">
+                    </button>
+                </section>
+            </div>
 
             <!-- PayPal Pricing -->
             <section class="pricing-section active" id="paypal-pricing">
