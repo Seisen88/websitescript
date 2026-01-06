@@ -500,7 +500,7 @@ function showRobloxVerificationModal(tier = 'lifetime') {
 
                 <div class="form-group" style="margin: 20px 0;">
                     <label for="roblox-username" style="display: block; margin-bottom: 8px; color: var(--text-muted);">Roblox Username</label>
-                    <input type="text" id="roblox-username" class="form-control" placeholder="e.g. Seisen88" style="width: 100%; padding: 12px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
+                    <input type="text" id="roblox-username" class="form-control" placeholder="e.g. RobloxUsername" style="width: 100%; padding: 12px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);">
                 </div>
                 
                 <div class="info-box" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 8px; margin-bottom: 20px;">
