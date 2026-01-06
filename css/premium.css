@@ -27,7 +27,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
     transform: scale(1);
   }
@@ -64,7 +65,7 @@
 }
 
 .payment-tab {
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   background: var(--bg-card);
   border: 2px solid var(--border-color);
   border-radius: var(--radius-lg);
@@ -129,7 +130,7 @@
 }
 
 .pricing-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -153,7 +154,11 @@
 
 .pricing-card.featured {
   border-color: #f5576c;
-  background: linear-gradient(135deg, rgba(240, 147, 251, 0.05) 0%, rgba(245, 87, 108, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(240, 147, 251, 0.05) 0%,
+    rgba(245, 87, 108, 0.05) 100%
+  );
 }
 
 .pricing-card.featured::before {
@@ -449,24 +454,24 @@
   .premium-header h1 {
     font-size: 2rem;
   }
-  
+
   .premium-subtitle {
     font-size: 1rem;
   }
-  
+
   .payment-tabs {
     flex-direction: column;
   }
-  
+
   .payment-tab {
     width: 100%;
     justify-content: center;
   }
-  
+
   .pricing-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .pricing-price .amount {
     font-size: 2.5rem;
   }
@@ -474,61 +479,61 @@
 
 /* Saved Keys Styling */
 .saved-keys-list {
-    max-height: 400px;
-    overflow-y: auto;
-    margin: 1rem 0;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 1rem 0;
 }
 
 .saved-key-item {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1rem;
-    margin-bottom: 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .saved-key-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
 }
 
 .saved-key-header strong {
-    color: var(--text-primary);
-    font-size: 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
 }
 
 .saved-key-date {
-    color: var(--text-muted);
-    font-size: 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 .saved-key-item .key-item {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 0.75rem;
-    border-radius: var(--radius-sm);
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: #10b981;
-    margin-bottom: 0.75rem;
-    word-break: break-all;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  color: #10b981;
+  margin-bottom: 0.75rem;
+  word-break: break-all;
 }
 
 .keys-container {
-    margin: 1.5rem 0;
+  margin: 1.5rem 0;
 }
 
 .keys-container .key-item {
-    background: var(--bg-tertiary);
-    border: 2px solid #10b981;
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    font-family: 'Courier New', monospace;
-    font-size: 1.1rem;
-    color: #10b981;
-    text-align: center;
-    word-break: break-all;
-    margin-bottom: 0.5rem;
+  background: var(--bg-tertiary);
+  border: 2px solid #10b981;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  color: #10b981;
+  text-align: center;
+  word-break: break-all;
+  margin-bottom: 0.5rem;
 }
