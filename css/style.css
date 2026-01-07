@@ -514,8 +514,12 @@ body {
   font-size: 20vw;
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(139, 146, 160, 0.04);
-  text-stroke: 1px rgba(139, 146, 160, 0.04);
+  -webkit-text-stroke: 2px rgba(16, 185, 129, 0.12);
+  text-stroke: 2px rgba(16, 185, 129, 0.12);
+  text-shadow: 
+    0 0 30px rgba(16, 185, 129, 0.15),
+    0 0 60px rgba(16, 185, 129, 0.1),
+    0 0 90px rgba(16, 185, 129, 0.05);
   white-space: nowrap;
   pointer-events: none;
   z-index: 0;
