@@ -12,31 +12,31 @@ a {
 }
 
 :root {
-  /* Color Palette - Dashboard Dark Theme */
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  /* Color Palette - Unified Dark Theme */
+  --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --secondary-gradient: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
+  --accent-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
 
-  /* Dashboard Background Colors */
-  --bg-primary: #0f1419;
-  --bg-secondary: #1a1f2e;
-  --bg-tertiary: #252b3b;
-  --bg-card: #1e2433;
-  --bg-card-hover: #252b3d;
+  /* Dashboard Background Colors - Darker, No Blue Tint */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: #141414;
+  --bg-card-hover: #1f1f1f;
 
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --text-primary: #e5e5e5;
+  --text-secondary: #888;
+  --text-muted: #666;
 
   /* Border & Shadow */
-  --border-color: #2d3748;
-  --border-color-light: #374151;
+  --border-color: #1f1f1f;
+  --border-color-light: #2a2a2a;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.2);
+  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
 
   /* Typography */
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -141,8 +141,8 @@ body {
 }
 
 .hamburger-menu:hover {
-    background: var(--bg-card-hover);
-    color: #10b981;
+  background: var(--bg-card-hover);
+  color: #10b981;
 }
 
 /* Mobile Sidebar Styles moved to end of file */
@@ -1034,9 +1034,16 @@ select:focus {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 /* ========================================
