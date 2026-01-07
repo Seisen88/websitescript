@@ -53,3 +53,37 @@ services:
     plan: free
     buildCommand: echo "No build needed for static site"
     staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /obfuscator
+        destination: /obfuscator.html
+      - type: rewrite
+        source: /scripts
+        destination: /scripts.html
+      - type: rewrite
+        source: /videos
+        destination: /videos.html
+      - type: rewrite
+        source: /premium
+        destination: /premium.html
+      - type: rewrite
+        source: /getkey
+        destination: /getkey.html
+      - type: rewrite
+        source: /partners
+        destination: /partners.html
+      - type: rewrite
+        source: /faq
+        destination: /faq.html
+      - type: rewrite
+        source: /support
+        destination: /support.html
+      - type: rewrite
+        source: /legal
+        destination: /legal.html
+      - type: rewrite
+        source: /admin
+        destination: /admin.html
+      - type: rewrite
+        source: /success
+        destination: /success.html

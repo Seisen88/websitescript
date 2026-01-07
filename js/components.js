@@ -72,7 +72,7 @@ function loadHeader() {
             <a href="/videos" class="sidebar-link" title="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="/support.html" class="sidebar-link" title="Support">
+            <a href="/support" class="sidebar-link" title="Support">
                 <i class="fas fa-headset"></i>
             </a>
         </div>
@@ -248,7 +248,7 @@ function loadSidebar() {
             <a href="/videos" class="sidebar-link" title="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="/support.html" class="sidebar-link" title="Support">
+            <a href="/support" class="sidebar-link" title="Support">
                 <i class="fas fa-headset"></i>
             </a>
         </div>
@@ -293,11 +293,11 @@ function loadFooter() {
             <div class="footer-section">
                 <h4>Products</h4>
                 <ul class="footer-links footer-links-columns">
-                    <li><a href="obfuscator.html">Lua Obfuscator</a></li>
-                    <li><a href="scripts.html">Script Hub</a></li>
-                    <li><a href="videos.html">Tutorials</a></li>
-                    <li><a href="premium.html">Premium Access</a></li>
-                    <li><a href="getkey.html">Get Key</a></li>
+                    <li><a href="obfuscator">Lua Obfuscator</a></li>
+                    <li><a href="scripts">Script Hub</a></li>
+                    <li><a href="videos">Tutorials</a></li>
+                    <li><a href="premium">Premium Access</a></li>
+                    <li><a href="getkey">Get Key</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -310,9 +310,9 @@ function loadFooter() {
             <div class="footer-section">
                 <h4>Legal</h4>
                 <ul class="footer-links">
-                    <li><a href="legal.html#terms">Terms of Service</a></li>
-                    <li><a href="legal.html#privacy">Privacy Policy</a></li>
-                    <li><a href="legal.html#license">License (AGPL v3.0)</a></li>
+                    <li><a href="legal#terms">Terms of Service</a></li>
+                    <li><a href="legal#privacy">Privacy Policy</a></li>
+                    <li><a href="legal#license">License (AGPL v3.0)</a></li>
                 </ul>
             </div>
         </div>
