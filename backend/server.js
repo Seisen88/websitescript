@@ -272,7 +272,10 @@ app.post('/api/paypal/capture-order', async (req, res) => {
             res.json({
                 success: true,
                 keys: keyResult.keys,
-                tier: paymentInfo.tier
+                tier: paymentInfo.tier,
+                transactionId: paymentInfo.transactionId,
+                email: paymentInfo.payerEmail,
+                amount: paymentInfo.amount
             });
 
             console.log('🎉 Payment processed successfully!');
