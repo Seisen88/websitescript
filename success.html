@@ -1,496 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Successful - Seisen Hub</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --success-bg: #0a0a0a;
-            --success-card: #141414;
-            --success-border: #1f1f1f;
-            --success-text: #e5e5e5;
-            --success-muted: #888;
-            --success-accent: #10b981;
-        }
+      :root {
+        --success-bg: #0a0a0a;
+        --success-card: #141414;
+        --success-border: #1f1f1f;
+        --success-text: #e5e5e5;
+        --success-muted: #888;
+        --success-accent: #10b981;
+      }
 
-        body {
-            background: var(--success-bg);
-            color: var(--success-text);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            padding: 40px 20px;
-        }
+      body {
+        background: var(--success-bg);
+        color: var(--success-text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        padding: 40px 20px;
+      }
 
-        .success-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+      .success-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
 
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--success-muted);
-            text-decoration: none;
-            margin-bottom: 30px;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--success-muted);
+        text-decoration: none;
+        margin-bottom: 30px;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
 
-        .back-btn:hover {
-            color: var(--success-text);
-        }
+      .back-btn:hover {
+        color: var(--success-text);
+      }
 
-        .order-header {
-            margin-bottom: 30px;
-        }
+      .order-header {
+        margin-bottom: 30px;
+      }
 
-        .order-header h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+      .order-header h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
 
-        .order-date {
-            font-size: 14px;
-            color: var(--success-muted);
-        }
+      .order-date {
+        font-size: 14px;
+        color: var(--success-muted);
+      }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--success-accent);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            float: right;
-        }
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(16, 185, 129, 0.15);
+        color: var(--success-accent);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        float: right;
+      }
 
-        .status-badge i {
-            font-size: 16px;
-        }
+      .status-badge i {
+        font-size: 16px;
+      }
 
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background: var(--success-card);
+        border: 1px solid var(--success-border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .card h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .card h2 i {
+        color: var(--success-accent);
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--success-border);
+      }
+
+      .info-row:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        color: var(--success-muted);
+        font-size: 14px;
+      }
+
+      .info-value {
+        color: var(--success-text);
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .total-row {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .key-section {
+        background: var(--success-card);
+        border: 1px solid var(--success-border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+
+      .key-section h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .key-section h2 i {
+        color: var(--success-accent);
+      }
+
+      .key-box {
+        background: var(--success-bg);
+        border: 1px solid var(--success-border);
+        border-radius: 8px;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .key-text {
+        font-family: "Courier New", monospace;
+        font-size: 16px;
+        color: var(--success-accent);
+        letter-spacing: 1px;
+      }
+
+      .copy-btn {
+        background: var(--success-accent);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+
+      .copy-btn:hover {
+        background: #059669;
+      }
+
+      .key-note {
+        font-size: 13px;
+        color: var(--success-muted);
+        font-style: italic;
+      }
+
+      .timeline {
+        background: var(--success-card);
+        border: 1px solid var(--success-border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      .timeline h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(16, 185, 129, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--success-accent);
+        flex-shrink: 0;
+      }
+
+      .timeline-content h3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .timeline-content p {
+        font-size: 13px;
+        color: var(--success-muted);
+      }
+
+      .help-section {
+        background: var(--success-card);
+        border: 1px solid var(--success-border);
+        border-radius: 12px;
+        padding: 32px;
+        text-align: center;
+      }
+
+      .help-section i {
+        font-size: 48px;
+        color: var(--success-muted);
+        margin-bottom: 16px;
+      }
+
+      .help-section h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .help-section p {
+        color: var(--success-muted);
+        margin-bottom: 20px;
+      }
+
+      .help-btn {
+        background: var(--success-accent);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .help-btn:hover {
+        background: #059669;
+      }
+
+      @media (max-width: 768px) {
         .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+          grid-template-columns: 1fr;
         }
-
-        .card {
-            background: var(--success-card);
-            border: 1px solid var(--success-border);
-            border-radius: 12px;
-            padding: 24px;
-        }
-
-        .card h2 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card h2 i {
-            color: var(--success-accent);
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--success-border);
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            color: var(--success-muted);
-            font-size: 14px;
-        }
-
-        .info-value {
-            color: var(--success-text);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .total-row {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .key-section {
-            background: var(--success-card);
-            border: 1px solid var(--success-border);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-        }
-
-        .key-section h2 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .key-section h2 i {
-            color: var(--success-accent);
-        }
-
-        .key-box {
-            background: var(--success-bg);
-            border: 1px solid var(--success-border);
-            border-radius: 8px;
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .key-text {
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            color: var(--success-accent);
-            letter-spacing: 1px;
-        }
-
-        .copy-btn {
-            background: var(--success-accent);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .copy-btn:hover {
-            background: #059669;
-        }
-
-        .key-note {
-            font-size: 13px;
-            color: var(--success-muted);
-            font-style: italic;
-        }
-
-        .timeline {
-            background: var(--success-card);
-            border: 1px solid var(--success-border);
-            border-radius: 12px;
-            padding: 24px;
-        }
-
-        .timeline h2 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(16, 185, 129, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--success-accent);
-            flex-shrink: 0;
-        }
-
-        .timeline-content h3 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .timeline-content p {
-            font-size: 13px;
-            color: var(--success-muted);
-        }
-
-        .help-section {
-            background: var(--success-card);
-            border: 1px solid var(--success-border);
-            border-radius: 12px;
-            padding: 32px;
-            text-align: center;
-        }
-
-        .help-section i {
-            font-size: 48px;
-            color: var(--success-muted);
-            margin-bottom: 16px;
-        }
-
-        .help-section h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .help-section p {
-            color: var(--success-muted);
-            margin-bottom: 20px;
-        }
-
-        .help-btn {
-            background: var(--success-accent);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .help-btn:hover {
-            background: #059669;
-        }
-
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="sidebar"></div>
-    
+
     <div class="success-container">
-        <a href="premium" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Back to Orders
-        </a>
+      <a
+        href="#"
+        id="back-btn"
+        class="back-btn"
+        onclick="goBack(); return false;"
+      >
+        <i class="fas fa-arrow-left"></i> <span id="back-text">Back</span>
+      </a>
 
-        <div class="order-header">
-            <span class="status-badge">
-                <i class="fas fa-check-circle"></i>
-                Order Status: Delivered
-            </span>
-            <h1 id="order-title">Order #LOADING...</h1>
-            <p class="order-date" id="order-date">Placed on Loading...</p>
+      <div class="order-header">
+        <span class="status-badge">
+          <i class="fas fa-check-circle"></i>
+          Order Status: Delivered
+        </span>
+        <h1 id="order-title">Order #LOADING...</h1>
+        <p class="order-date" id="order-date">Placed on Loading...</p>
+      </div>
+
+      <!-- Order Items & Payment Info -->
+      <div class="grid">
+        <div class="card">
+          <h2><i class="fas fa-box"></i> Order Items</h2>
+          <div class="info-row">
+            <div>
+              <div class="info-value" id="product-name">Software</div>
+              <div class="info-label" id="product-tier">Month x 1</div>
+            </div>
+            <div class="info-value" id="product-price">$9.99</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Your rating:</div>
+            <div style="color: #fbbf24">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="info-row total-row">
+            <div class="info-label">Total</div>
+            <div class="info-value" id="total-price">$9.99</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Amount Paid</div>
+            <div class="info-value" id="amount-paid">$0.00</div>
+          </div>
         </div>
 
-        <!-- Order Items & Payment Info -->
-        <div class="grid">
-            <div class="card">
-                <h2><i class="fas fa-box"></i> Order Items</h2>
-                <div class="info-row">
-                    <div>
-                        <div class="info-value" id="product-name">Software</div>
-                        <div class="info-label" id="product-tier">Month x 1</div>
-                    </div>
-                    <div class="info-value" id="product-price">$9.99</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Your rating:</div>
-                    <div style="color: #fbbf24;">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="info-row total-row">
-                    <div class="info-label">Total</div>
-                    <div class="info-value" id="total-price">$9.99</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Amount Paid</div>
-                    <div class="info-value" id="amount-paid">$0.00</div>
-                </div>
+        <div class="card">
+          <h2><i class="fas fa-credit-card"></i> Payment Information</h2>
+          <div class="info-row">
+            <div class="info-label">Payment Method</div>
+            <div class="info-value" id="payment-method">PayPal</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Account/Email</div>
+            <div class="info-value" id="payment-email">user@example.com</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Transaction ID</div>
+            <div
+              class="info-value"
+              style="font-size: 12px; font-family: monospace"
+              id="transaction-id"
+            >
+              LOADING...
             </div>
-
-            <div class="card">
-                <h2><i class="fas fa-credit-card"></i> Payment Information</h2>
-                <div class="info-row">
-                    <div class="info-label">Payment Method</div>
-                    <div class="info-value" id="payment-method">PayPal</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Account/Email</div>
-                    <div class="info-value" id="payment-email">user@example.com</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Transaction ID</div>
-                    <div class="info-value" style="font-size: 12px; font-family: monospace;" id="transaction-id">LOADING...</div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Customer Information -->
-        <div class="card" style="margin-bottom: 20px;">
-            <h2><i class="fas fa-user"></i> Customer Information</h2>
-            <div class="grid" style="gap: 40px;">
-                <div>
-                    <div class="info-row">
-                        <div class="info-label">Email</div>
-                        <div class="info-value" id="customer-email">user@example.com</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-label">Order ID</div>
-                        <div class="info-value" style="font-family: monospace;" id="order-id-display">LOADING...</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="info-row">
-                        <div class="info-label">Customer ID</div>
-                        <div class="info-value" style="font-family: monospace;" id="customer-id">LOADING...</div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-label">Customer Since</div>
-                        <div class="info-value" id="customer-since">December 24, 2025 at 05:25 AM</div>
-                    </div>
-                </div>
+      <!-- Customer Information -->
+      <div class="card" style="margin-bottom: 20px">
+        <h2><i class="fas fa-user"></i> Customer Information</h2>
+        <div class="grid" style="gap: 40px">
+          <div>
+            <div class="info-row">
+              <div class="info-label">Email</div>
+              <div class="info-value" id="customer-email">user@example.com</div>
             </div>
+            <div class="info-row">
+              <div class="info-label">Order ID</div>
+              <div
+                class="info-value"
+                style="font-family: monospace"
+                id="order-id-display"
+              >
+                LOADING...
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="info-row">
+              <div class="info-label">Customer ID</div>
+              <div
+                class="info-value"
+                style="font-family: monospace"
+                id="customer-id"
+              >
+                LOADING...
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Customer Since</div>
+              <div class="info-value" id="customer-since">
+                December 24, 2025 at 05:25 AM
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- License Key -->
-        <div class="key-section">
-            <h2><i class="fas fa-key"></i> Delivered Items</h2>
-            <div class="key-box">
-                <span class="key-text" id="license-key">LOADING-KEY-XXXXX</span>
-                <button class="copy-btn" onclick="copyKey()">
-                    <i class="fas fa-copy"></i> Copy
-                </button>
-            </div>
-            <p class="key-note">Delivered on <span id="delivery-date">December 24, 2025 at 05:25 AM</span> • Delivered Instantly</p>
+      <!-- License Key -->
+      <div class="key-section">
+        <h2><i class="fas fa-key"></i> Delivered Items</h2>
+        <div class="key-box">
+          <span class="key-text" id="license-key">LOADING-KEY-XXXXX</span>
+          <button class="copy-btn" onclick="copyKey()">
+            <i class="fas fa-copy"></i> Copy
+          </button>
         </div>
+        <p class="key-note">
+          Delivered on
+          <span id="delivery-date">December 24, 2025 at 05:25 AM</span> •
+          Delivered Instantly
+        </p>
+      </div>
 
-        <!-- Order Timeline -->
-        <div class="timeline">
-            <h2><i class="fas fa-clock"></i> Order Timeline</h2>
-            <div class="timeline-item">
-                <div class="timeline-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="timeline-content">
-                    <h3>Order Placed</h3>
-                    <p id="timeline-placed">December 24, 2025 at 05:25 AM</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-icon">
-                    <i class="fas fa-check"></i>
-                </div>
-                <div class="timeline-content">
-                    <h3>Order Delivered</h3>
-                    <p id="timeline-delivered">December 24, 2025 at 05:25 AM</p>
-                </div>
-            </div>
+      <!-- Order Timeline -->
+      <div class="timeline">
+        <h2><i class="fas fa-clock"></i> Order Timeline</h2>
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>Order Placed</h3>
+            <p id="timeline-placed">December 24, 2025 at 05:25 AM</p>
+          </div>
         </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>Order Delivered</h3>
+            <p id="timeline-delivered">December 24, 2025 at 05:25 AM</p>
+          </div>
+        </div>
+      </div>
 
-        <!-- Help Section -->
-        <div class="help-section" style="margin-top: 20px;">
-            <i class="fas fa-question-circle"></i>
-            <h3>Need Help?</h3>
-            <p>Have questions about your order? Our support team is here to help you with any issues.</p>
-            <button class="help-btn" onclick="contactSupport()">
-                <i class="fas fa-headset"></i> Contact Support
-            </button>
-        </div>
+      <!-- Help Section -->
+      <div class="help-section" style="margin-top: 20px">
+        <i class="fas fa-question-circle"></i>
+        <h3>Need Help?</h3>
+        <p>
+          Have questions about your order? Our support team is here to help you
+          with any issues.
+        </p>
+        <button class="help-btn" onclick="contactSupport()">
+          <i class="fas fa-headset"></i> Contact Support
+        </button>
+      </div>
     </div>
 
     <script>
-        // Get order data from URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderData = {
-            orderId: urlParams.get('orderId') || 'UNKNOWN',
-            tier: urlParams.get('tier') || 'monthly',
-            amount: urlParams.get('amount') || '0.00',
-            email: urlParams.get('email') || 'N/A',
-            key: urlParams.get('key') || 'NO-KEY-PROVIDED',
-            method: urlParams.get('method') || 'paypal',
-            date: urlParams.get('date') || new Date().toISOString()
-        };
+      // Get order data from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderData = {
+        orderId: urlParams.get("orderId") || "UNKNOWN",
+        tier: urlParams.get("tier") || "monthly",
+        amount: urlParams.get("amount") || "0.00",
+        email: urlParams.get("email") || "N/A",
+        key: urlParams.get("key") || "NO-KEY-PROVIDED",
+        method: urlParams.get("method") || "paypal",
+        date: urlParams.get("date") || new Date().toISOString(),
+      };
 
-        // Populate page with data
-        document.getElementById('order-title').textContent = `Order ${orderData.orderId}`;
+      // Smart back button - detect where user came from
+      function goBack() {
+        const referrer = document.referrer;
         
-        const orderDate = new Date(orderData.date);
-        const formattedDate = orderDate.toLocaleDateString('en-US', { 
-            month: 'long', 
-            day: 'numeric', 
-            year: 'numeric' 
-        }) + ' at ' + orderDate.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
+        // Check if came from admin panel
+        if (referrer.includes('/admin') || referrer.includes('admin.html')) {
+          window.location.href = '/admin';
+        } 
+        // Check if came from premium page
+        else if (referrer.includes('/premium') || referrer.includes('premium.html')) {
+          window.location.href = '/premium';
+        }
+        // Default: use browser history
+        else if (window.history.length > 1) {
+          window.history.back();
+        }
+        // Fallback: go to premium page
+        else {
+          window.location.href = '/premium';
+        }
+      }
+
+      // Set initial back button text based on referrer
+      const referrer = document.referrer;
+      const backText = document.getElementById('back-text');
+      if (referrer.includes('/admin') || referrer.includes('admin.html')) {
+        backText.textContent = 'Back to Admin';
+      } else {
+        backText.textContent = 'Back to Orders';
+      }
+
+      // Populate page with data
+      document.getElementById(
+        "order-title"
+      ).textContent = `Order ${orderData.orderId}`;
+
+      const orderDate = new Date(orderData.date);
+      const formattedDate =
+        orderDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        }) +
+        " at " +
+        orderDate.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
         });
-        
-        document.getElementById('order-date').textContent = `Placed on ${formattedDate}`;
-        document.getElementById('product-name').textContent = 'Seisen Hub Premium';
-        document.getElementById('product-tier').textContent = `${orderData.tier.charAt(0).toUpperCase() + orderData.tier.slice(1)} x 1`;
-        document.getElementById('product-price').textContent = orderData.method === 'roblox' ? 'Free (Roblox)' : `$${orderData.amount}`;
-        document.getElementById('total-price').textContent = orderData.method === 'roblox' ? 'Free (Roblox)' : `$${orderData.amount}`;
-        document.getElementById('amount-paid').textContent = orderData.method === 'roblox' ? '$0.00' : `$${orderData.amount}`;
-        document.getElementById('payment-method').textContent = orderData.method === 'roblox' ? 'Roblox' : 'PayPal';
-        document.getElementById('payment-email').textContent = orderData.email;
-        document.getElementById('transaction-id').textContent = orderData.orderId;
-        document.getElementById('customer-email').textContent = orderData.email;
-        document.getElementById('order-id-display').textContent = orderData.orderId;
-        document.getElementById('customer-id').textContent = orderData.orderId.substring(0, 24);
-        document.getElementById('customer-since').textContent = formattedDate;
-        document.getElementById('license-key').textContent = orderData.key;
-        document.getElementById('delivery-date').textContent = formattedDate;
-        document.getElementById('timeline-placed').textContent = formattedDate;
-        document.getElementById('timeline-delivered').textContent = formattedDate;
 
-        // Contact Support with pre-filled order info
-        function contactSupport() {
-            sessionStorage.setItem('supportOrderId', orderData.orderId);
-            sessionStorage.setItem('supportKey', orderData.key);
-            window.location.href = 'support.html';
-        }
+      document.getElementById(
+        "order-date"
+      ).textContent = `Placed on ${formattedDate}`;
+      document.getElementById("product-name").textContent =
+        "Seisen Hub Premium";
+      document.getElementById("product-tier").textContent = `${
+        orderData.tier.charAt(0).toUpperCase() + orderData.tier.slice(1)
+      } x 1`;
+      document.getElementById("product-price").textContent =
+        orderData.method === "roblox"
+          ? "Free (Roblox)"
+          : `$${orderData.amount}`;
+      document.getElementById("total-price").textContent =
+        orderData.method === "roblox"
+          ? "Free (Roblox)"
+          : `$${orderData.amount}`;
+      document.getElementById("amount-paid").textContent =
+        orderData.method === "roblox" ? "$0.00" : `$${orderData.amount}`;
+      document.getElementById("payment-method").textContent =
+        orderData.method === "roblox" ? "Roblox" : "PayPal";
+      document.getElementById("payment-email").textContent = orderData.email;
+      document.getElementById("transaction-id").textContent = orderData.orderId;
+      document.getElementById("customer-email").textContent = orderData.email;
+      document.getElementById("order-id-display").textContent =
+        orderData.orderId;
+      document.getElementById("customer-id").textContent =
+        orderData.orderId.substring(0, 24);
+      document.getElementById("customer-since").textContent = formattedDate;
+      document.getElementById("license-key").textContent = orderData.key;
+      document.getElementById("delivery-date").textContent = formattedDate;
+      document.getElementById("timeline-placed").textContent = formattedDate;
+      document.getElementById("timeline-delivered").textContent = formattedDate;
 
-        // Copy key function
-        function copyKey() {
-            const key = document.getElementById('license-key').textContent;
-            navigator.clipboard.writeText(key).then(() => {
-                const btn = event.target.closest('.copy-btn');
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                }, 2000);
-            });
-        }
+      // Contact Support with pre-filled order info
+      function contactSupport() {
+        sessionStorage.setItem("supportOrderId", orderData.orderId);
+        sessionStorage.setItem("supportKey", orderData.key);
+        window.location.href = "support.html";
+      }
+
+      // Copy key function
+      function copyKey() {
+        const key = document.getElementById("license-key").textContent;
+        navigator.clipboard.writeText(key).then(() => {
+          const btn = event.target.closest(".copy-btn");
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      }
     </script>
     <script src="js/components.js"></script>
-</body>
+  </body>
 </html>
