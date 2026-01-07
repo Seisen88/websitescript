@@ -135,7 +135,15 @@ function renderPaymentsTable(payments) {
         const user = payment.payer_email || payment.roblox_username || 'N/A';
         const method = payment.currency === 'ROBUX' ? 'roblox' : 'paypal';
         const tier = payment.tier;
-        const amount = payment.currency === 'ROBUX' ? 'ROBUX' : `$${payment.amount}`;
+        
+        // Fix amount display - show actual price for PayPal, "Free" for Roblox
+        let amount;
+        if (payment.currency === 'ROBUX') {
+            amount = 'Free (Roblox)';
+        } else {
+            amount = `$${parseFloat(payment.amount || 0).toFixed(2)}`;
+        }
+        
         const keys = Array.isArray(payment.generated_keys) ? payment.generated_keys : [];
         const key = keys.length > 0 ? keys[0] : 'N/A';
         const orderId = payment.transaction_id.substring(0, 24);
