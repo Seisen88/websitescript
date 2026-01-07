@@ -44,6 +44,12 @@ services:
         sync: false
       - key: EMAIL_FROM
         sync: false
+      - key: DISCORD_WEBHOOK_URL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: TICKET_DB_PATH
+        value: /app/tickets.db
 
   # Frontend Static Site
   - type: web
