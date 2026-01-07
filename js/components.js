@@ -507,11 +507,11 @@ function applyTheme(theme) {
   const themes = {
     default: {
       primary: '#10b981',
-      bg: '#0f1419',
-      bgSecondary: '#1a1f2e',
-      bgTertiary: '#242b3d',
-      text: '#e6edf3',
-      textSecondary: '#8b92a0'
+      bg: '#0a0a0a',
+      bgSecondary: '#141414',
+      bgTertiary: '#1a1a1a',
+      text: '#e5e5e5',
+      textSecondary: '#888'
     },
     light: {
       primary: '#10b981',
