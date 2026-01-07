@@ -110,35 +110,61 @@ function renderPaymentsTable(payments) {
     if (payments.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <td colspan="6" style="text-align: center; padding: 60px; color: var(--admin-text-muted);">
                     No payments found
                 </td>
             </tr>
         `;
         return;
     }
+
+    // Update pagination
+    document.getElementById('showing-count').textContent = payments.length;
+    document.getElementById('total-count').textContent = payments.length;
     
     tbody.innerHTML = payments.map(payment => {
-        const date = new Date(payment.created_at).toLocaleString();
+        const date = new Date(payment.created_at).toLocaleDateString('en-US', { 
+            month: '2-digit', 
+            day: '2-digit', 
+            year: 'numeric' 
+        });
+        const time = new Date(payment.created_at).toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
         const user = payment.payer_email || payment.roblox_username || 'N/A';
         const method = payment.currency === 'ROBUX' ? 'roblox' : 'paypal';
         const tier = payment.tier;
         const amount = payment.currency === 'ROBUX' ? 'ROBUX' : `$${payment.amount}`;
         const keys = Array.isArray(payment.generated_keys) ? payment.generated_keys : [];
         const key = keys.length > 0 ? keys[0] : 'N/A';
+        const orderId = payment.transaction_id.substring(0, 24);
         
         return `
             <tr>
-                <td>${date}</td>
-                <td>${user}</td>
-                <td><span class="badge badge-${tier}">${tier.toUpperCase()}</span></td>
-                <td><span class="badge badge-${method}">${method.toUpperCase()}</span></td>
-                <td>${amount}</td>
+                <td>
+                    <div style="display: flex; align-items: center;">
+                        <span class="status-indicator"></span>
+                        <div>
+                            <div style="font-weight: 500;">${orderId}...</div>
+                            <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 2px;">Order ID</div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div>${date}</div>
+                    <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 2px;">${time}</div>
+                </td>
+                <td>
+                    <div>${tier.charAt(0).toUpperCase() + tier.slice(1)}</div>
+                    <div style="font-size: 12px; color: var(--admin-text-muted); margin-top: 2px;">${user}</div>
+                </td>
+                <td><strong>${amount}</strong></td>
+                <td><span class="badge badge-${method}">${method === 'roblox' ? 'Delivered' : 'Delivered'}</span></td>
                 <td class="key-cell">
                     ${key}
                     ${key !== 'N/A' ? `<i class="fas fa-copy copy-btn" onclick="copyToClipboard('${key}')" title="Copy key"></i>` : ''}
                 </td>
-                <td style="font-size: 0.85em; color: var(--text-muted);">${payment.transaction_id}</td>
             </tr>
         `;
     }).join('');
