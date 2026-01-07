@@ -1,6 +1,7 @@
 // Component Loader - Injects header and footer directly (works with file:// protocol)
 document.addEventListener('DOMContentLoaded', function() {
     loadHeader();
+    loadSidebar();
     loadFooter();
     updateActiveNavLink();
     initLoadingScreen();
