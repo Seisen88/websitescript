@@ -162,7 +162,8 @@ body {
   justify-content: center;
   width: 32px;
   height: 32px;
-  margin-bottom: auto;
+  margin-top: auto;
+  margin-bottom: 0;
   color: #10b981;
   font-size: 1.1rem;
   text-decoration: none;
