@@ -363,6 +363,20 @@ function getSavedKeys() {
     }
 }
 
+// View Order Details
+function viewOrder(key, tier, purchaseDate) {
+    const params = new URLSearchParams({
+        orderId: 'SAVED-' + Date.now(),
+        tier: tier,
+        amount: '0.00',
+        email: 'Saved Order',
+        key: key,
+        method: 'saved',
+        date: purchaseDate
+    });
+    window.location.href = `success.html?${params.toString()}`;
+}
+
 // Show saved keys modal
 function showSavedKeysModal() {
     const savedKeys = getSavedKeys();
