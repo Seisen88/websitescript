@@ -19,9 +19,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const key = sessionStorage.getItem('supportKey');
     
     if (orderId && key) {
-        // Pre-fill the form
+        // Pre-fill the form fields
         document.getElementById('category').value = 'Premium';
         document.getElementById('subject').value = `Support for Order ${orderId}`;
+        document.getElementById('order-id').value = orderId;
+        document.getElementById('license-key').value = key;
         document.getElementById('description').value = `Order ID: ${orderId}\nLicense Key: ${key}\n\nIssue: `;
         
         // Clear sessionStorage
@@ -45,12 +47,22 @@ document.getElementById('ticket-form')?.addEventListener('submit', async (e) => 
     const category = document.getElementById('category').value;
     const subject = document.getElementById('subject').value;
     const description = document.getElementById('description').value;
+    const orderId = document.getElementById('order-id').value;
+    const licenseKey = document.getElementById('license-key').value;
 
     const submitBtn = e.target.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
     try {
+        // Build description with order info if provided
+        let fullDescription = description;
+        if (orderId || licenseKey) {
+            fullDescription = `${description}\n\n--- Order Information ---`;
+            if (orderId) fullDescription += `\nOrder ID: ${orderId}`;
+            if (licenseKey) fullDescription += `\nLicense Key: ${licenseKey}`;
+        }
+
         const response = await fetch(`${API_BASE}/api/support/ticket`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -59,7 +71,7 @@ document.getElementById('ticket-form')?.addEventListener('submit', async (e) => 
                 userEmail,
                 category,
                 subject,
-                description
+                description: fullDescription
             })
         });
 
