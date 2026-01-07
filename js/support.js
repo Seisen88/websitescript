@@ -13,6 +13,27 @@ window.addEventListener('DOMContentLoaded', () => {
     if (myTickets.length > 0) {
         showMyTickets();
     }
+    
+    // Auto-fill from sessionStorage if coming from Contact Support
+    const orderId = sessionStorage.getItem('supportOrderId');
+    const key = sessionStorage.getItem('supportKey');
+    
+    if (orderId && key) {
+        // Pre-fill the form
+        document.getElementById('category').value = 'Premium';
+        document.getElementById('subject').value = `Support for Order ${orderId}`;
+        document.getElementById('description').value = `Order ID: ${orderId}\nLicense Key: ${key}\n\nIssue: `;
+        
+        // Clear sessionStorage
+        sessionStorage.removeItem('supportOrderId');
+        sessionStorage.removeItem('supportKey');
+        
+        // Focus on description field
+        document.getElementById('description').focus();
+        // Move cursor to end
+        const desc = document.getElementById('description');
+        desc.setSelectionRange(desc.value.length, desc.value.length);
+    }
 });
 
 // Ticket Form Submission
