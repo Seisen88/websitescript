@@ -381,9 +381,14 @@ function showSavedKeysModal() {
                     <span class="saved-key-date">${date}</span>
                 </div>
                 <div class="key-item">${item.key}</div>
-                <button class="btn btn-small btn-secondary" onclick="copyKey('${item.key}')">
-                    <i class="fas fa-copy"></i> Copy
-                </button>
+                <div style="display: flex; gap: 8px; margin-top: 10px;">
+                    <button class="btn btn-small btn-secondary" onclick="copyKey('${item.key}')" style="flex: 1;">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-small btn-primary" onclick="viewOrder('${item.key}', '${item.tier}', '${item.purchaseDate}')" style="flex: 1;">
+                        <i class="fas fa-eye"></i> View
+                    </button>
+                </div>
             </div>
         `;
     }).join('');
