@@ -59,6 +59,57 @@
         .legal-content li {
             margin-bottom: 0.5rem;
         }
+
+        /* Dropdown/Collapsible Styles */
+        .dropdown-toggle {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .dropdown-toggle:hover {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .dropdown-toggle h2 {
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        .dropdown-icon {
+            font-size: 1.2rem;
+            color: #10b981;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .dropdown-content.open {
+            max-height: 2000px;
+            opacity: 1;
+            transition: max-height 0.5s ease-in, opacity 0.4s ease;
+        }
     </style>
 </head>
 <body>
@@ -73,31 +124,41 @@
 
             <!-- Terms of Service -->
             <section id="terms" class="legal-section">
-                <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
-                <div class="legal-content">
-                    <h3>1. Acceptance of Terms</h3>
-                    <p>By accessing and using Seisen's services, you accept and agree to be bound by the terms and provision of this agreement.</p>
-                    
-                    <h3>2. Use License</h3>
-                    <p>Permission is granted to temporarily download one copy of the materials (information or software) on Seisen's website for personal, non-commercial transitory viewing only.</p>
-                    
-                    <h3>3. Disclaimer</h3>
-                    <p>The materials on Seisen's website are provided "as is". Seisen makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties.</p>
+                <div class="dropdown-toggle" onclick="toggleDropdown('terms-content')">
+                    <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
+                    <i class="fas fa-chevron-down dropdown-icon" id="terms-content-icon"></i>
+                </div>
+                <div class="dropdown-content" id="terms-content">
+                    <div class="legal-content">
+                        <h3>1. Acceptance of Terms</h3>
+                        <p>By accessing and using Seisen's services, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h3>2. Use License</h3>
+                        <p>Permission is granted to temporarily download one copy of the materials (information or software) on Seisen's website for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h3>3. Disclaimer</h3>
+                        <p>The materials on Seisen's website are provided "as is". Seisen makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties.</p>
+                    </div>
                 </div>
             </section>
 
             <!-- Privacy Policy -->
             <section id="privacy" class="legal-section">
-                <h2><i class="fas fa-user-shield"></i> Privacy Policy</h2>
-                <div class="legal-content">
-                    <h3>1. Information Collection</h3>
-                    <p>We do not collect any personal data unless explicitly provided by you (e.g., email for premium access). We respect your privacy and anonymity.</p>
-                    
-                    <h3>2. Local Storage</h3>
-                    <p>We use local storage technology to save your preferences and keys locally on your device. This data is not sent to our servers.</p>
-                    
-                    <h3>3. Third Party Services</h3>
-                    <p>Our website uses third-party services like PayPal for payments. These services utilize their own security protocols and data handling practices.</p>
+                <div class="dropdown-toggle" onclick="toggleDropdown('privacy-content')">
+                    <h2><i class="fas fa-user-shield"></i> Privacy Policy</h2>
+                    <i class="fas fa-chevron-down dropdown-icon" id="privacy-content-icon"></i>
+                </div>
+                <div class="dropdown-content" id="privacy-content">
+                    <div class="legal-content">
+                        <h3>1. Information Collection</h3>
+                        <p>We do not collect any personal data unless explicitly provided by you (e.g., email for premium access). We respect your privacy and anonymity.</p>
+                        
+                        <h3>2. Local Storage</h3>
+                        <p>We use local storage technology to save your preferences and keys locally on your device. This data is not sent to our servers.</p>
+                        
+                        <h3>3. Third Party Services</h3>
+                        <p>Our website uses third-party services like PayPal for payments. These services utilize their own security protocols and data handling practices.</p>
+                    </div>
                 </div>
             </section>
 
@@ -146,5 +207,19 @@
     <div id="footer-container"></div>
 
     <script src="js/components.js"></script>
+    <script>
+        function toggleDropdown(contentId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(contentId + '-icon');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.classList.remove('rotated');
+            } else {
+                content.classList.add('open');
+                icon.classList.add('rotated');
+            }
+        }
+    </script>
 </body>
 </html>
