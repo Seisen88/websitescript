@@ -268,7 +268,19 @@ app.post('/api/paypal/capture-order', async (req, res) => {
             // Update database with keys
             await paymentDB.updatePaymentKeys(paymentInfo.transactionId, keyResult.keys);
 
-            // Send email logic removed as per user request
+            // Send Discord notification for premium purchase
+            await sendDiscordWebhook(null, [{
+                title: '💎 New Premium Purchase (PayPal)',
+                color: 0xfbbf24,
+                fields: [
+                    { name: 'Tier', value: paymentInfo.tier.toUpperCase(), inline: true },
+                    { name: 'Amount', value: `${paymentInfo.amount} ${paymentInfo.currency}`, inline: true },
+                    { name: 'Transaction ID', value: paymentInfo.transactionId, inline: false },
+                    { name: 'Customer Email', value: paymentInfo.payerEmail, inline: false },
+                    { name: 'License Key', value: `||${keyResult.keys[0]}||`, inline: false }
+                ],
+                timestamp: new Date().toISOString()
+            }]);
 
             res.json({
                 success: true,
@@ -511,6 +523,21 @@ app.post('/api/roblox/verify-purchase', async (req, res) => {
             if (validityHours > 0) {
                 newExpiryDate = new Date(Date.now() + (validityHours * 60 * 60 * 1000)).toISOString();
             }
+
+            // Send Discord notification for Roblox premium purchase
+            await sendDiscordWebhook(null, [{
+                title: `💎 ${isRenewal ? 'Premium Renewal' : 'New Premium Purchase'} (Roblox)`,
+                color: 0x10b981,
+                fields: [
+                    { name: 'Tier', value: tier.toUpperCase(), inline: true },
+                    { name: 'Type', value: isRenewal ? 'Renewal' : 'New Purchase', inline: true },
+                    { name: 'Roblox Username', value: verification.username, inline: true },
+                    { name: 'User ID', value: verification.userId.toString(), inline: true },
+                    { name: 'Expiry', value: newExpiryDate ? new Date(newExpiryDate).toLocaleString() : 'Lifetime', inline: false },
+                    { name: 'License Key', value: `||${keyResult.keys[0]}||`, inline: false }
+                ],
+                timestamp: new Date().toISOString()
+            }]);
 
             res.json({
                 success: true,
