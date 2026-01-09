@@ -533,20 +533,21 @@
       document.getElementById("product-tier").textContent = `${
         orderData.tier.charAt(0).toUpperCase() + orderData.tier.slice(1)
       } x 1`;
-      document.getElementById("product-price").textContent =
-        orderData.method === "roblox"
-          ? `${orderData.amount} Robux`
-          : `$${orderData.amount}`;
-      document.getElementById("total-price").textContent =
-        orderData.method === "roblox"
-          ? `${orderData.amount} Robux`
-          : `$${orderData.amount}`;
-      document.getElementById("amount-paid").textContent =
-        orderData.method === "roblox" 
-          ? `${orderData.amount} Robux` 
-          : `$${orderData.amount}`;
-      document.getElementById("payment-method").textContent =
-        orderData.method === "roblox" ? "Roblox" : "PayPal";
+      
+      // Determine if this is a Robux payment (including saved Robux orders)
+      const robuxAmounts = ['500', '800', '1600'];
+      const isRobuxPayment = orderData.method === "roblox" || 
+                             (orderData.method === "saved" && robuxAmounts.includes(orderData.amount));
+      
+      // Display amounts based on payment type
+      const amountDisplay = isRobuxPayment 
+        ? `${orderData.amount} Robux`
+        : `$${orderData.amount}`;
+      
+      document.getElementById("product-price").textContent = amountDisplay;
+      document.getElementById("total-price").textContent = amountDisplay;
+      document.getElementById("amount-paid").textContent = amountDisplay;
+      document.getElementById("payment-method").textContent = isRobuxPayment ? "Roblox" : "PayPal";
       document.getElementById("payment-email").textContent = orderData.email;
       document.getElementById("transaction-id").textContent = orderData.orderId;
       document.getElementById("customer-email").textContent = orderData.email;

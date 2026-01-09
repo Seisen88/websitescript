@@ -136,7 +136,7 @@ async function capturePayPalPayment(orderId) {
 
         if (data.success && data.keys && data.keys.length > 0) {
             // Save key to localStorage for future reference
-            saveKeyToLocalStorage(data.keys[0], data.tier);
+            saveKeyToLocalStorage(data.keys[0], data.tier, 'paypal', data.amount || '0.00');
             
             // Redirect to success page
             const params = new URLSearchParams({
@@ -376,14 +376,16 @@ function copyKey(key) {
 }
 
 // Save key to localStorage
-function saveKeyToLocalStorage(key, tier) {
+function saveKeyToLocalStorage(key, tier, method = 'unknown', amount = '0.00') {
     try {
         const savedKeys = JSON.parse(localStorage.getItem('seisen_premium_keys') || '[]');
         
-        // Add new key with timestamp
+        // Add new key with timestamp and payment info
         savedKeys.push({
             key: key,
             tier: tier,
+            method: method,
+            amount: amount,
             purchaseDate: new Date().toISOString(),
             timestamp: Date.now()
         });
@@ -411,14 +413,14 @@ function getSavedKeys() {
 }
 
 // View Order Details
-function viewOrder(key, tier, purchaseDate) {
+function viewOrder(key, tier, purchaseDate, method = 'saved', amount = '0.00') {
     const params = new URLSearchParams({
         orderId: 'SAVED-' + Date.now(),
         tier: tier,
-        amount: '0.00',
+        amount: amount,
         email: 'Saved Order',
         key: key,
-        method: 'saved',
+        method: method,
         date: purchaseDate
     });
     window.location.href = `success.html?${params.toString()}`;
@@ -448,6 +450,8 @@ function showSavedKeysModal() {
             year: 'numeric' 
         });
         const orderId = 'ORDER-' + item.key.substring(0, 16);
+        const method = item.method || 'saved';
+        const amount = item.amount || '0.00';
         return `
             <div class="saved-key-card">
                 <div class="saved-key-header">
@@ -459,7 +463,7 @@ function showSavedKeysModal() {
                     <button class="saved-key-btn saved-key-btn-copy" onclick="copyKey('${item.key}')">
                         <i class="fas fa-copy"></i> Copy
                     </button>
-                    <button class="saved-key-btn saved-key-btn-view" onclick="viewOrder('${item.key}', '${item.tier}', '${item.purchaseDate}')">
+                    <button class="saved-key-btn saved-key-btn-view" onclick="viewOrder('${item.key}', '${item.tier}', '${item.purchaseDate}', '${method}', '${amount}')">
                         <i class="fas fa-eye"></i> View
                     </button>
                 </div>
@@ -856,15 +860,15 @@ async function verifyRobloxPurchase() {
         verifyBtn.disabled = false;
         
         if (data.success && data.keys && data.keys.length > 0) {
-            // Save key
-            saveKeyToLocalStorage(data.keys[0], data.tier);
-            
             // Robux pricing map
             const robuxPricing = {
                 weekly: '500',
                 monthly: '800',
                 lifetime: '1600'
             };
+            
+            // Save key with payment info
+            saveKeyToLocalStorage(data.keys[0], data.tier, 'roblox', robuxPricing[data.tier] || '0');
             
             // Redirect to success page
             const params = new URLSearchParams({
