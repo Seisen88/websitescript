@@ -23,9 +23,7 @@ function switchTab(tab) {
 
 // Load All Tickets
 async function loadTickets() {
-    console.log('Loading tickets...');
-    console.log('API_BASE:', API_BASE);
-    console.log('adminToken:', adminToken);
+    // Load all tickets from backend
     
     try {
         const response = await fetch(`${API_BASE}/api/admin/tickets`, {
@@ -34,7 +32,7 @@ async function loadTickets() {
             }
         });
         
-        console.log('Response status:', response.status);
+
         
         if (!response.ok) {
             if (response.status === 401) {
@@ -45,9 +43,7 @@ async function loadTickets() {
         }
         
         const data = await response.json();
-        console.log('Tickets data:', data);
         allTickets = data.tickets || [];
-        console.log('All tickets:', allTickets);
         
         renderTicketsList(allTickets);
         
@@ -64,9 +60,7 @@ async function loadTickets() {
 
 // Render Tickets List
 function renderTicketsList(tickets) {
-    console.log('Rendering tickets list:', tickets);
     const ticketsList = document.getElementById('tickets-list');
-    console.log('Tickets list element:', ticketsList);
     
     if (tickets.length === 0) {
         ticketsList.innerHTML = `
@@ -104,7 +98,7 @@ function renderTicketsList(tickets) {
         `;
     }).join('');
     
-    console.log('Tickets rendered successfully');
+
 }
 
 // View Ticket Detail

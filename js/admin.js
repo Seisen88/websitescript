@@ -10,6 +10,9 @@ let allPayments = [];
 
 // Check if already logged in
 window.addEventListener('DOMContentLoaded', () => {
+    console.log('%c⚡ Seisen Hub Admin %cv2.0', 'color: #10b981; font-weight: bold; font-size: 20px;', 'color: #888; font-size: 12px;');
+    console.log('%cSecure Dashboard Loaded', 'color: #888; font-style: italic;');
+    
     adminToken = localStorage.getItem('adminToken');
     if (adminToken) {
         showDashboard();
