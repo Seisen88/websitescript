@@ -13,7 +13,7 @@ function showConsoleBranding() {
     console.log('%c⚡ Seisen Hub %cv2.0', 'color: #10b981; font-weight: bold; font-size: 24px;', 'color: #888; font-size: 12px;');
     console.log('%cPremium Scripts & Tools', 'color: #e5e5e5; font-size: 14px; font-weight: 500;');
     console.log('%cJoin our Discord: https://discord.gg/F4sAf6z8Ph', 'color: #3b82f6; font-size: 12px; margin-top: 5px;');
-    console.log('%cDeveloped by Junkie & DeepMind', 'color: #888; font-size: 10px; font-style: italic; margin-top: 5px;');
+    console.log('%cDeveloped by Seisen Hub', 'color: #888; font-size: 10px; font-style: italic; margin-top: 5px;');
 }
 
 function loadAds() {
