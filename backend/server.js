@@ -43,7 +43,7 @@ const junkieSystem = new JunkieKeySystem({
 // Initialize Ticket database
 const TicketDatabase = require('./ticket-database');
 const ticketDB = new TicketDatabase(
-    process.env.TICKET_DB_PATH || path.join(__dirname, 'tickets.db')
+    process.env.TICKET_DB_PATH || path.join(__dirname, 'data', 'tickets.json')
 );
 
 // Initialize JSON Stats database
