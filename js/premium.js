@@ -455,9 +455,21 @@ function showSavedKeysModal() {
         
         // Determine payment method display
         let paymentBadge = '';
-        if (method === 'roblox') {
+        let detectedMethod = method;
+        
+        // Fallback: detect method from amount for old keys without method field
+        if (method === 'saved' || !method) {
+            const robuxAmounts = ['500', '800', '1600'];
+            if (robuxAmounts.includes(amount)) {
+                detectedMethod = 'roblox';
+            } else if (amount && amount !== '0.00' && amount !== '0') {
+                detectedMethod = 'paypal';
+            }
+        }
+        
+        if (detectedMethod === 'roblox') {
             paymentBadge = '<span style="font-size: 0.75em; color: #fbbf24; margin-left: 8px;"><i class="fas fa-coins"></i> Robux</span>';
-        } else if (method === 'paypal') {
+        } else if (detectedMethod === 'paypal') {
             paymentBadge = '<span style="font-size: 0.75em; color: #0070ba; margin-left: 8px;"><i class="fab fa-paypal"></i> PayPal</span>';
         }
         
