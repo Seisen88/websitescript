@@ -19,7 +19,8 @@ class JsonDatabase {
 
         if (!fs.existsSync(this.filePath)) {
             const initialData = {
-                visitors: 0
+                visitors: 0, // Keep for backward compatibility
+                visitorIPs: [] // New unique visitor tracking
             };
             fs.writeFileSync(this.filePath, JSON.stringify(initialData, null, 2));
         }
@@ -73,14 +74,37 @@ class JsonDatabase {
 
     getVisitorCount() {
         const data = this.readData();
-        return data.visitors || 0;
+        // Return the count of unique visitor IPs
+        return data.visitorIPs ? data.visitorIPs.length : 0;
     }
 
-    incrementVisitorCount() {
+    hasVisited(ipAddress) {
         const data = this.readData();
-        data.visitors = (data.visitors || 0) + 1;
-        this.writeData(data);
-        return data.visitors;
+        if (!data.visitorIPs) {
+            data.visitorIPs = [];
+        }
+        return data.visitorIPs.includes(ipAddress);
+    }
+
+    addVisitor(ipAddress) {
+        const data = this.readData();
+        if (!data.visitorIPs) {
+            data.visitorIPs = [];
+        }
+        
+        // Only add if IP hasn't visited before
+        if (!data.visitorIPs.includes(ipAddress)) {
+            data.visitorIPs.push(ipAddress);
+            this.writeData(data);
+            return true; // New visitor
+        }
+        return false; // Already visited
+    }
+
+    incrementVisitorCount(ipAddress) {
+        // Add visitor and return current count
+        this.addVisitor(ipAddress);
+        return this.getVisitorCount();
     }
     
     // Payment Methods

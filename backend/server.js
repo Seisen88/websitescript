@@ -1165,8 +1165,29 @@ app.get('/api/visitors', (req, res) => {
 
 app.post('/api/visitors', (req, res) => {
     try {
-        const count = statsDB.incrementVisitorCount();
-        res.json({ count });
+        // Extract IP address from request
+        // Check for proxy headers first (for production behind reverse proxy)
+        const ipAddress = req.headers['x-forwarded-for']?.split(',')[0].trim() 
+            || req.headers['x-real-ip'] 
+            || req.connection.remoteAddress 
+            || req.socket.remoteAddress 
+            || 'unknown';
+        
+        // Check if this IP has already visited
+        const hasVisited = statsDB.hasVisited(ipAddress);
+        
+        if (!hasVisited) {
+            // New visitor - add to database
+            statsDB.addVisitor(ipAddress);
+            console.log(`✅ New visitor tracked: ${ipAddress}`);
+        }
+        
+        // Return current count
+        const count = statsDB.getVisitorCount();
+        res.json({ 
+            count,
+            isNewVisitor: !hasVisited
+        });
     } catch (error) {
         console.error('Error incrementing visitor count:', error);
         res.status(500).json({ error: 'Failed to increment visitor count' });

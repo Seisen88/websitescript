@@ -1,3 +1,6 @@
 {
-  "visitors": 2
+  "visitors": 0,
+  "visitorIPs": [
+    "::1"
+  ]
 }
