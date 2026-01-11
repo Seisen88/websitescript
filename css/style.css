@@ -1120,6 +1120,29 @@ select:focus {
   font-size: 0.65rem;
 }
 
+.footer-bottom p {
+  margin: 0.3rem 0;
+}
+
+.footer-bottom .visitor-stats {
+  color: var(--text-secondary);
+  font-size: 0.6rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.footer-bottom .visitor-stats i {
+  color: #10b981;
+}
+
+.footer-bottom .visitor-stats span {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
 .footer-bottom a {
   color: var(--text-secondary);
   text-decoration: none;

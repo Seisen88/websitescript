@@ -80,6 +80,25 @@ app.use(express.json({ limit: '50mb' })); // Increased from 10mb to 50mb for lar
 // PayPal IPN requires urlencoded body parser
 app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 
+// Visitor tracking middleware
+app.use((req, res, next) => {
+    // Only track HTML page visits, not API calls or static resources
+    if (req.path.endsWith('.html') || req.path === '/') {
+        const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip;
+        const userAgent = req.headers['user-agent'] || 'Unknown';
+        
+        // Record visit asynchronously to not block the request
+        setImmediate(() => {
+            try {
+                statsDB.recordVisit(ipAddress, userAgent);
+            } catch (error) {
+                console.error('Error recording visit:', error);
+            }
+        });
+    }
+    next();
+});
+
 // Serve static files from parent directory (frontend files)
 app.use(express.static(path.join(__dirname, '..')));
 
@@ -160,6 +179,21 @@ app.get('/api/health', (req, res) => {
         junkie: !!process.env.JUNKIE_WEBHOOK_URL,
         email: !!emailService
     });
+});
+
+// Get visitor statistics
+app.get('/api/visitor-stats', (req, res) => {
+    try {
+        const stats = statsDB.getVisitorStats();
+        res.json({
+            totalVisits: stats.totalVisits,
+            uniqueVisitors: stats.uniqueVisitors,
+            lastUpdated: stats.lastUpdated
+        });
+    } catch (error) {
+        console.error('Error fetching visitor stats:', error);
+        res.status(500).json({ error: 'Failed to fetch visitor stats' });
+    }
 });
 
 // Create PayPal Order

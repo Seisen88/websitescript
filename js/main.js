@@ -323,4 +323,34 @@ document.addEventListener('DOMContentLoaded', function() {
             element.title = tooltips[id];
         }
     });
+
+    // Fetch and display visitor statistics
+    async function fetchVisitorStats() {
+        try {
+            const response = await fetch('/api/visitor-stats');
+            if (response.ok) {
+                const stats = await response.json();
+                
+                const visitorCountEl = document.getElementById('visitor-count');
+                const uniqueVisitorCountEl = document.getElementById('unique-visitor-count');
+                
+                if (visitorCountEl) {
+                    visitorCountEl.textContent = stats.totalVisits.toLocaleString();
+                }
+                if (uniqueVisitorCountEl) {
+                    uniqueVisitorCountEl.textContent = stats.uniqueVisitors.toLocaleString();
+                }
+            }
+        } catch (error) {
+            console.error('Failed to fetch visitor stats:', error);
+            // Show fallback text
+            const visitorCountEl = document.getElementById('visitor-count');
+            const uniqueVisitorCountEl = document.getElementById('unique-visitor-count');
+            if (visitorCountEl) visitorCountEl.textContent = '--';
+            if (uniqueVisitorCountEl) uniqueVisitorCountEl.textContent = '--';
+        }
+    }
+
+    // Fetch visitor stats on page load
+    fetchVisitorStats();
 });

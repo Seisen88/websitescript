@@ -123,9 +123,67 @@ class JsonDatabase {
         return payments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
 
-    getAllPayments() {
-        const payments = this.readPayments();
-        return payments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    // Visitor tracking methods
+    readVisitorStats() {
+        const statsPath = path.join(path.dirname(this.filePath), 'visitor-stats.json');
+        try {
+            if (!fs.existsSync(statsPath)) {
+                const initialData = {
+                    totalVisits: 0,
+                    uniqueVisitors: 0,
+                    lastUpdated: new Date().toISOString(),
+                    visitors: []
+                };
+                fs.writeFileSync(statsPath, JSON.stringify(initialData, null, 2));
+                return initialData;
+            }
+            const data = fs.readFileSync(statsPath, 'utf8');
+            return JSON.parse(data);
+        } catch (error) {
+            console.error('Error reading visitor stats:', error);
+            return { totalVisits: 0, uniqueVisitors: 0, lastUpdated: new Date().toISOString(), visitors: [] };
+        }
+    }
+
+    writeVisitorStats(data) {
+        const statsPath = path.join(path.dirname(this.filePath), 'visitor-stats.json');
+        try {
+            fs.writeFileSync(statsPath, JSON.stringify(data, null, 2));
+            return true;
+        } catch (error) {
+            console.error('Error writing visitor stats:', error);
+            return false;
+        }
+    }
+
+    recordVisit(ipAddress, userAgent) {
+        const stats = this.readVisitorStats();
+        stats.totalVisits++;
+        
+        // Check if this is a unique visitor (by IP)
+        const existingVisitor = stats.visitors.find(v => v.ip === ipAddress);
+        
+        if (!existingVisitor) {
+            stats.uniqueVisitors++;
+            stats.visitors.push({
+                ip: ipAddress,
+                userAgent: userAgent,
+                firstVisit: new Date().toISOString(),
+                lastVisit: new Date().toISOString(),
+                visitCount: 1
+            });
+        } else {
+            existingVisitor.lastVisit = new Date().toISOString();
+            existingVisitor.visitCount++;
+        }
+        
+        stats.lastUpdated = new Date().toISOString();
+        this.writeVisitorStats(stats);
+        return stats;
+    }
+
+    getVisitorStats() {
+        return this.readVisitorStats();
     }
 }
 

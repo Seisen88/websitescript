@@ -323,6 +323,11 @@ function loadFooter() {
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Seisen. All rights reserved.</p>
+            <p class="visitor-stats">
+                <i class="fas fa-eye"></i> 
+                <span id="visitor-count">Loading...</span> Total Visits | 
+                <span id="unique-visitor-count">...</span> Unique Visitors
+            </p>
         </div>
     </div>
 </footer>
@@ -333,6 +338,34 @@ function loadFooter() {
         footerContainer.innerHTML = footerHTML;
 
         initFooterCarousel();
+        fetchVisitorStats(); // Load visitor stats after footer is rendered
+    }
+}
+
+// Fetch and display visitor statistics
+async function fetchVisitorStats() {
+    try {
+        const response = await fetch('/api/visitor-stats');
+        if (response.ok) {
+            const stats = await response.json();
+            
+            const visitorCountEl = document.getElementById('visitor-count');
+            const uniqueVisitorCountEl = document.getElementById('unique-visitor-count');
+            
+            if (visitorCountEl) {
+                visitorCountEl.textContent = stats.totalVisits.toLocaleString();
+            }
+            if (uniqueVisitorCountEl) {
+                uniqueVisitorCountEl.textContent = stats.uniqueVisitors.toLocaleString();
+            }
+        }
+    } catch (error) {
+        console.error('Failed to fetch visitor stats:', error);
+        // Show fallback text
+        const visitorCountEl = document.getElementById('visitor-count');
+        const uniqueVisitorCountEl = document.getElementById('unique-visitor-count');
+        if (visitorCountEl) visitorCountEl.textContent = '--';
+        if (uniqueVisitorCountEl) uniqueVisitorCountEl.textContent = '--';
     }
 }
 
