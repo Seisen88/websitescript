@@ -22,10 +22,21 @@ const JunkieKeySystem = require('./junkie-integration');
 const RobloxIntegration = require('./roblox-integration');
 
 // Initialize PayPal SDK
+const clientId = process.env.PAYPAL_CLIENT_ID ? process.env.PAYPAL_CLIENT_ID.trim() : '';
+const clientSecret = process.env.PAYPAL_CLIENT_SECRET ? process.env.PAYPAL_CLIENT_SECRET.trim() : '';
+const sandboxMode = process.env.PAYPAL_SANDBOX === 'true';
+
+console.log('----------------------------------------');
+console.log('🔑 PayPal Configuration Check:');
+console.log(`   Mode: ${sandboxMode ? 'Sandbox' : 'Live'} (Env: ${process.env.PAYPAL_SANDBOX})`);
+console.log(`   Client ID: ${clientId.substring(0, 4)}...${clientId.substring(clientId.length - 4)} (Length: ${clientId.length})`);
+console.log(`   Secret: ${clientSecret.substring(0, 4)}...${clientSecret.substring(clientSecret.length - 4)} (Length: ${clientSecret.length})`);
+console.log('----------------------------------------');
+
 const paypalSDK = new PayPalSDK({
-    clientId: process.env.PAYPAL_CLIENT_ID ? process.env.PAYPAL_CLIENT_ID.trim() : '',
-    clientSecret: process.env.PAYPAL_CLIENT_SECRET ? process.env.PAYPAL_CLIENT_SECRET.trim() : '',
-    sandboxMode: process.env.PAYPAL_SANDBOX === 'true'
+    clientId: clientId,
+    clientSecret: clientSecret,
+    sandboxMode: sandboxMode
 });
 
 // Initialize Junkie key system
