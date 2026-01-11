@@ -248,7 +248,7 @@ app.post('/api/paypal/capture-order', async (req, res) => {
             monthly: 720,
             lifetime: 0
         };
-        const validity = validityMap[paymentInfo.tier] || 168;
+        const validity = (validityMap[paymentInfo.tier] !== undefined) ? validityMap[paymentInfo.tier] : 168;
 
         // Save payment to database
         await paymentDB.savePayment({
@@ -460,7 +460,7 @@ app.post('/api/roblox/verify-purchase', async (req, res) => {
         
         // 1. If NEW purchase, save initial record
         if (!isRenewal && !isDuplicate) {
-             await paymentDB.savePayment({
+            await paymentDB.savePayment({
                 transactionId: transactionId,
                 payerEmail: null,
                 payerId: `ROBLOX_${verification.userId}`,
@@ -475,7 +475,7 @@ app.post('/api/roblox/verify-purchase', async (req, res) => {
             console.log('💾 New Roblox purchase saved to database');
         } else if (isRenewal) {
             // Update UAID in database for the existing transaction
-             try {
+            try {
                 // Use the JSON DB method to update the record
                 console.log('♻️  Renewing: Updating record with fresh UAID...');
                 const updated = paymentDB.updateRobloxPurchase(transactionId, currentUaid);
@@ -484,9 +484,9 @@ app.post('/api/roblox/verify-purchase', async (req, res) => {
                     throw new Error('Failed to update Roblox purchase record');
                 }
                 console.log('✅ Record updated with new UAID and timestamp');
-             } catch (err) {
-                 console.error('Error renewing record:', err);
-             }
+            } catch (err) {
+                console.error('Error renewing record:', err);
+            }
         }
 
         // 2. Generate Key (for both New and Renewal)
@@ -576,7 +576,7 @@ app.post('/api/test/generate-key', async (req, res) => {
             monthly: 720,
             lifetime: 0
         };
-        const validity = validityMap[tier] || 168;
+        const validity = (validityMap[tier] !== undefined) ? validityMap[tier] : 168;
 
         // Save test payment to database
         await paymentDB.savePayment({
