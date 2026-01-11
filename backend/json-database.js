@@ -16,14 +16,6 @@ class JsonDatabase {
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
         }
-
-        if (!fs.existsSync(this.filePath)) {
-            const initialData = {
-                visitors: 0, // Keep for backward compatibility
-                visitorIPs: [] // New unique visitor tracking
-            };
-            fs.writeFileSync(this.filePath, JSON.stringify(initialData, null, 2));
-        }
     }
     
     ensurePaymentsFileExists() {
@@ -32,15 +24,7 @@ class JsonDatabase {
         }
     }
 
-    readData() {
-        try {
-            const data = fs.readFileSync(this.filePath, 'utf8');
-            return JSON.parse(data);
-        } catch (error) {
-            console.error('Error reading stats database:', error);
-            return { visitors: 0 };
-        }
-    }
+
     
     readPayments() {
         try {
@@ -52,15 +36,7 @@ class JsonDatabase {
         }
     }
 
-    writeData(data) {
-        try {
-            fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2));
-            return true;
-        } catch (error) {
-            console.error('Error writing stats database:', error);
-            return false;
-        }
-    }
+
     
     writePayments(data) {
         try {
@@ -72,40 +48,7 @@ class JsonDatabase {
         }
     }
 
-    getVisitorCount() {
-        const data = this.readData();
-        // Return the count of unique visitor IPs
-        return data.visitorIPs ? data.visitorIPs.length : 0;
-    }
 
-    hasVisited(ipAddress) {
-        const data = this.readData();
-        if (!data.visitorIPs) {
-            data.visitorIPs = [];
-        }
-        return data.visitorIPs.includes(ipAddress);
-    }
-
-    addVisitor(ipAddress) {
-        const data = this.readData();
-        if (!data.visitorIPs) {
-            data.visitorIPs = [];
-        }
-        
-        // Only add if IP hasn't visited before
-        if (!data.visitorIPs.includes(ipAddress)) {
-            data.visitorIPs.push(ipAddress);
-            this.writeData(data);
-            return true; // New visitor
-        }
-        return false; // Already visited
-    }
-
-    incrementVisitorCount(ipAddress) {
-        // Add visitor and return current count
-        this.addVisitor(ipAddress);
-        return this.getVisitorCount();
-    }
     
     // Payment Methods
     
