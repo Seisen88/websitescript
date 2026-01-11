@@ -45,8 +45,11 @@ class PayPalSDK {
             
             return this.accessToken;
         } catch (error) {
-            console.error('PayPal OAuth error:', error.response?.data || error.message);
-            throw new Error('Failed to get PayPal access token');
+            const errorDetail = error.response?.data || error.message;
+            console.error('PayPal OAuth error:', errorDetail);
+            const newError = new Error('Failed to get PayPal access token: ' + (error.response?.data?.error_description || error.message));
+            newError.response = error.response;
+            throw newError;
         }
     }
 
@@ -99,8 +102,11 @@ class PayPalSDK {
 
             return response.data;
         } catch (error) {
-            console.error('PayPal create order error:', error.response?.data || error.message);
-            throw new Error('Failed to create PayPal order');
+            const errorDetail = error.response?.data || error.message;
+            console.error('PayPal create order error:', errorDetail);
+            const newError = new Error('Failed to create PayPal order: ' + (error.response?.data?.message || error.message));
+            newError.response = error.response; // Attach response
+            throw newError;
         }
     }
 

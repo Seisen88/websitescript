@@ -192,7 +192,12 @@ app.post('/api/paypal/create-order', async (req, res) => {
 
     } catch (error) {
         console.error('❌ Error creating PayPal order:', error);
-        res.status(500).json({ error: 'Failed to create order' });
+        // Enhanced error reporting
+        res.status(500).json({ 
+            error: 'Failed to create order',
+            details: error.message,
+            paypalError: error.response?.data || 'No Response Data'
+        });
     }
 });
 

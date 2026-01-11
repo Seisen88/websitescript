@@ -101,6 +101,12 @@ async function handlePayPalPayment(plan, amount) {
     } catch (error) {
         console.error('PayPal payment error:', error);
         console.error('Backend URL attempting to reach:', BACKEND_URL);
+        
+        // Log detailed error from backend if available
+        if (error.response) {
+             console.error('SERVER ERROR DETAILS:', error.response);
+        }
+
         showNotification('Failed to create payment. check console for details.', 'error');
         
         // Re-enable buttons
@@ -924,7 +930,7 @@ async function verifyRobloxPurchase() {
         }
     } catch (error) {
         console.error('Verification error:', error);
-        showNotification('Failed to connect to server', 'error');
+        showNotification('Failed to connect to server: ' + (error.message || 'Unknown error'), 'error');
         
         // Reset button
         const verifyBtn = document.querySelector('#roblox-modal .btn-primary');
