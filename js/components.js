@@ -346,8 +346,28 @@ function initVisitorCounter() {
     if (window.visitorCounterInitialized) return;
     window.visitorCounterInitialized = true;
 
-    fetch('/api/stats/visit', { method: 'POST' })
-        .then(response => response.json())
+    fetch('/api/stats/visit', { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ timestamp: Date.now() })
+    })
+        .then(async response => {
+            const text = await response.text();
+            
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status}: ${text}`);
+            }
+            
+            try {
+                // Try to parse the text as JSON
+                return text ? JSON.parse(text) : {};
+            } catch (e) {
+                console.error('Failed to parse response JSON:', text);
+                throw new Error(`Invalid JSON response: ${e.message}`);
+            }
+        })
         .then(data => {
             if (data.success) {
                 const visitorCount = document.getElementById('visitor-count');
@@ -357,7 +377,14 @@ function initVisitorCounter() {
                 if (viewCount) viewCount.textContent = data.totalViews.toLocaleString();
             }
         })
-        .catch(error => console.error('Error updating visitor stats:', error));
+        .catch(error => {
+            console.error('Error updating visitor stats:', error);
+            // Optional: Set fallback text
+            const visitorCount = document.getElementById('visitor-count');
+            const viewCount = document.getElementById('view-count');
+            if (visitorCount && visitorCount.textContent === '...') visitorCount.textContent = '-';
+            if (viewCount && viewCount.textContent === '...') viewCount.textContent = '-';
+        });
 }
 
 
