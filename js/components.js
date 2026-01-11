@@ -345,7 +345,13 @@ function loadFooter() {
 // Fetch and display visitor statistics
 async function fetchVisitorStats() {
     try {
-        const response = await fetch('/api/visitor-stats');
+        // Use the backend API URL from config
+        const apiUrl = window.API_CONFIG?.baseUrl || 
+                      (window.location.hostname === 'localhost' 
+                          ? 'http://localhost:3000' 
+                          : 'https://seisen-backend.onrender.com');
+        
+        const response = await fetch(`${apiUrl}/api/visitor-stats`);
         if (response.ok) {
             const stats = await response.json();
             
