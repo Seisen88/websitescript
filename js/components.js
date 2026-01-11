@@ -355,6 +355,7 @@ function initVisitorCounter() {
     })
         .then(async response => {
             const text = await response.text();
+            console.log('[VisitorStats] Raw response:', text);
             
             if (!response.ok) {
                 throw new Error(`Server returned ${response.status}: ${text}`);
@@ -362,7 +363,9 @@ function initVisitorCounter() {
             
             try {
                 // Try to parse the text as JSON
-                return text ? JSON.parse(text) : {};
+                const json = text ? JSON.parse(text) : {};
+                console.log('[VisitorStats] Parsed JSON:', json);
+                return json;
             } catch (e) {
                 console.error('Failed to parse response JSON:', text);
                 throw new Error(`Invalid JSON response: ${e.message}`);
@@ -375,11 +378,13 @@ function initVisitorCounter() {
                 
                 if (visitorCount) visitorCount.textContent = data.visitors.toLocaleString();
                 if (viewCount) viewCount.textContent = data.totalViews.toLocaleString();
+            } else {
+                console.warn('[VisitorStats] API returned success: false', data);
             }
         })
         .catch(error => {
-            console.error('Error updating visitor stats:', error);
-            // Optional: Set fallback text
+            console.error('[VisitorStats] Error:', error);
+            // ... fallback ...
             const visitorCount = document.getElementById('visitor-count');
             const viewCount = document.getElementById('view-count');
             if (visitorCount && visitorCount.textContent === '...') visitorCount.textContent = '-';
